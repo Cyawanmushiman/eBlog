@@ -21,7 +21,7 @@ class PostController extends Controller
     if($request->file('eyeCatchImage')){
       $original = $request->file('eyeCatchImage')->getClientOriginalName();
       $name = date('Ymd_His').'_'.$original;
-      $request->file('eyeCatchImage')->move('storage/eyeCatchImage',$name);
+      $request->file('eyeCatchImage')->move('storage/eyeCatchImage/',$name);
 
       $inputs['eyeCatchImage'] = $name;
     }

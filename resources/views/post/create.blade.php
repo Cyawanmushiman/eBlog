@@ -85,7 +85,7 @@
         <textarea name="body" id="body">{{old('body')}}</textarea>
 
         <label for="eyeCatchImage">eyeCatchImage</label>
-        <input type="file" id="eyeCatchImage">
+        <input type="file" id="eyeCatchImage" name="eyeCatchImage">
 
         <button class="create__btn" type="submit">create!</button>
       </form>
