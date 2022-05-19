@@ -42,6 +42,37 @@ img{
 .br-sp{
   display: none;
 }
+%pageTitle{
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.7rem;
+
+}
+%pageTitle--japanese{
+  font-size: 1.6rem;
+  text-align: center;
+  position: relative;
+  width: 7rem;
+  margin: 0 auto 2.6rem;
+  z-index: -1;
+
+  &::before,&::after{
+    content: '';
+    display: inline-block;
+    width: 22px;
+    height: 1px;
+    opacity: 0.7;
+    position: absolute;
+    top: 50%;
+    background-color: #333;
+  }
+  &::before{
+    left: -25px;
+  }
+  &::after{
+    right: -25px;
+  }
+}
 
 
 /*----------------------------------------

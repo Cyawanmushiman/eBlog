@@ -1,0 +1,48 @@
+.home{
+  width: 95%;
+  max-width: 700px;
+  margin: 7.7rem auto 0;
+
+  .home__title{
+    @extend %pageTitle;
+
+    &--japanese{
+      @extend %pageTitle--japanese;
+    }
+  }
+}
+
+.home__blogWrapper{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 86%;
+  margin: 0 auto;
+
+  .BlogCard{
+    width: 44.5%;
+    margin-bottom: 2rem;
+    &__image{
+      height: auto;
+      margin-bottom: 1rem;
+      &>img{
+        height: 96px;
+        object-fit: cover;
+      }
+    }
+    &__title{
+      font-family: 'Abril Fatface';
+      font-size: 1.4rem;
+    }
+  }
+}
+/*----------------------------------------
+      タブレット向け
+----------------------------------------*/
+@media (min-width: 600px) {
+}
+/*----------------------------------------
+      pc向け
+----------------------------------------*/
+@media (min-width: 1025px) {
+}
