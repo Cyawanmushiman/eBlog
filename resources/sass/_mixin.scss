@@ -1,0 +1,18 @@
+// lineHeightCrop（line-heightの不要な余白を打ち消す）のmixinのコード例。
+// variables.scssという共通の変数定義用のscssファイルに記述して一元管理化しています。
+@mixin lineHeightCrop($line-height) {
+  &::before {
+    display: block;
+    width: 0;
+    height: 0;
+    margin-top: calc((1 - #{$line-height}) * .5em);
+    content: "";
+  }
+  &::after {
+    display: block;
+    width: 0;
+    height: 0;
+    margin-bottom: calc((1 - #{$line-height}) * .5em);
+    content: "";
+  }
+}

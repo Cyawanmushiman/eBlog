@@ -1,0 +1,59 @@
+@import "variables";
+/*----------------------------------------
+      共通部分
+----------------------------------------*/
+* {
+  padding: 0;
+  margin: 0;
+}
+html {
+  font-size: 62.5%; //ルートのフォントサイズを10pxに設定
+  box-sizing: border-box;
+}
+body{
+  font-family: "A-OTF Ryumin Pr6N", "メイリオ", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  font-size: 1.6rem;//bodyを1.6emと指定する事で、その他は何も指定しなければ、16pxとなるとための設定
+}
+.bodyWrapper{//フッターをページの下端にくっつける
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+li{
+  list-style: none;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+img{
+  width: 100%;
+  vertical-align: middle;//画像下の謎余白消す
+}
+%table{
+  border-collapse: separate;
+}
+%postionCenter{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.br-sp{
+  display: none;
+}
+
+
+/*----------------------------------------
+      タブレット向け
+----------------------------------------*/
+@media (min-width: 600px) {
+}
+/*----------------------------------------
+      pc向け
+----------------------------------------*/
+@media (min-width: 1025px) {
+  .br-sp{
+    display: block;
+  }
+}

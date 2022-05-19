@@ -1,0 +1,304 @@
+@charset "UTF-8";
+/*----------------------------------------
+      共通部分
+----------------------------------------*/
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "A-OTF Ryumin Pr6N", "メイリオ", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  font-size: 1.6rem;
+}
+
+.bodyWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+img {
+  width: 100%;
+  vertical-align: middle;
+}
+
+.br-sp {
+  display: none;
+}
+
+/*----------------------------------------
+      タブレット向け
+----------------------------------------*/
+/*----------------------------------------
+      pc向け
+----------------------------------------*/
+@media (min-width: 1025px) {
+  .br-sp {
+    display: block;
+  }
+}
+/*----------------------------------------
+      タブレット向け
+----------------------------------------*/
+/*----------------------------------------
+      pc向け
+----------------------------------------*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.8rem;
+  position: fixed;
+  width: 100%;
+}
+.header__title {
+  font-size: 3rem;
+  font-family: "Abril Fatface";
+  margin-top: 1.4rem;
+  margin-right: 6rem;
+}
+.header__search {
+  width: 34px;
+  height: 35px;
+  margin-top: 1.75rem;
+  margin-left: 2.7rem;
+}
+
+/*  css ハンバーガーメニュ */
+/* ハンバーガーメニュー */
+/*============
+nav
+=============*/
+#navArea {
+  display: block;
+}
+
+.humburgerNav {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: -300px;
+  bottom: 0;
+  width: 300px;
+  background: #ffffff;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: all 0.5s;
+  z-index: 3;
+  opacity: 0;
+}
+.humburgerNav__title {
+  font-size: 3rem;
+  font-family: "Abril Fatface";
+  display: block;
+  text-align: center;
+}
+
+.open .humburgerNav {
+  left: 0;
+  opacity: 1;
+}
+
+.humburgerNav .inner {
+  padding: 25px;
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.menu-item {
+  border-bottom: 1px solid #333;
+  text-align: center;
+}
+
+.menu-item a {
+  display: block;
+  font-size: 14px;
+  text-decoration: none;
+  transition-duration: 0.2s;
+  line-height: 4.5;
+}
+
+.menu-item a:hover {
+  background: #e4e4e4;
+}
+
+.humburgerNav {
+  left: -220px;
+  width: 220px;
+}
+
+/*============
+.toggle_btn
+=============*/
+.toggle_btn {
+  display: block;
+  position: fixed;
+  top: 20px;
+  right: 26px;
+  width: 30px;
+  height: 30px;
+  transition: all 0.5s;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.toggle_btn span {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 28px;
+  height: 3px;
+  background-color: #333;
+  transition: all 0.5s;
+}
+
+.toggle_btn span:nth-child(1) {
+  top: 4px;
+}
+
+.toggle_btn span:nth-child(2) {
+  top: 12px;
+}
+
+.toggle_btn span:nth-child(3) {
+  bottom: 7px;
+}
+
+.open .toggle_btn span {
+  background-color: #fff;
+}
+
+.open .toggle_btn span:nth-child(1) {
+  transform: translateY(6px) rotate(-315deg);
+}
+
+.open .toggle_btn span:nth-child(2) {
+  opacity: 0;
+}
+
+.open .toggle_btn span:nth-child(3) {
+  transform: translateY(-10px) rotate(315deg);
+}
+
+/*============
+#mask
+=============*/
+#mask {
+  display: none;
+  transition: all 0.5s;
+}
+
+.open #mask {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.8;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/*  css ハンバーガーメニュ */
+/* ハンバーガーメニュー */
+/*----------------------------------------
+      タブレット向け
+----------------------------------------*/
+/*----------------------------------------
+      pc向け
+----------------------------------------*/
+.footer {
+  margin-top: auto;
+}
+
+/*----------------------------------------
+      タブレット向け
+----------------------------------------*/
+/*----------------------------------------
+      pc向け
+----------------------------------------*/
+.create {
+  width: 95%;
+  max-width: 700px;
+  margin: 7.7rem auto 0;
+}
+.create__title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.7rem;
+}
+.create__title--japanese {
+  font-size: 1.6rem;
+  text-align: center;
+  position: relative;
+  width: 7rem;
+  margin: 0 auto 2.6rem;
+  z-index: -1;
+}
+.create__title--japanese::before, .create__title--japanese::after {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  opacity: 0.7;
+  position: absolute;
+  top: 50%;
+  background-color: #333;
+}
+.create__title--japanese::before {
+  left: -25px;
+}
+.create__title--japanese::after {
+  right: -25px;
+}
+
+.create__form {
+  width: 87%;
+  margin: 0 auto;
+}
+.create__form label {
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+.create__form input:not(:last-of-type), .create__form textarea {
+  background-color: #e7e7e7;
+  padding: 0.1rem;
+  margin-bottom: 1.6rem;
+  display: block;
+  width: 100%;
+}
+.create__form textarea {
+  height: 32.6rem;
+}
+.create__form .create__btn {
+  width: 9.6rem;
+  height: 3.1rem;
+  background-color: #333;
+  color: white;
+  display: grid;
+  place-items: center;
+  margin: 2rem auto 0;
+}
