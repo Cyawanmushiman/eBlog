@@ -26,3 +26,4 @@ Route::get('post/index','PostController@index')->name('post.index');
 Route::get('post/show/{post}','PostController@show')->name('post.show');
 Route::get('post/{post}/edit','PostController@edit')->name('post.edit');
 Route::put('post/update/{post}','PostController@update')->name('post.update');
+Route::delete('post/delete/{post}','PostController@delete')->name('post.delete');

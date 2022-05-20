@@ -4,7 +4,11 @@
 
   <div class="single__touch">
     <a href="{{route('post.edit',$post)}}" class="singleEdit">edit</a>
-    <a href="" class="singleDelete">delete</a>
+    <form method="post" action="{{route('post.delete',$post)}}">
+      @csrf
+      @method('delete')
+      <button type="submit" class="singleDelete" onclick="return confirm('この投稿を削除してよろしいですか？')">delete</button>
+    </form>
   </div>
 
   <h1 class="single__title">{{$post->title}}</h1>
