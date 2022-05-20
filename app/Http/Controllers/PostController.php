@@ -53,7 +53,7 @@ class PostController extends Controller
     ]);
 
     if($request->file('eyeCatchImage')){
-      if($post->eyeCatchImage !== 'noImage.jpg'){
+      if($post->eyeCatchImage !== 'noImage.png'){
         Storage::disk('public')->delete('eyeCatchImage/'.$post->eyeCatchImage);
       }
       $original = $request->file('eyeCatchImage')->getClientOriginalName();
