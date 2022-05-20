@@ -36,8 +36,8 @@
           <div class="inner">
             <a href="index.html" class="humburgerNav__title">eBlog</a>
             <ul class="menu">
-              <li class="menu-item"><a href="">Home</a></li>
-              <li class="menu-item"><a href="">New Post</a></li>
+              <li class="menu-item {{url()->current()==route('post.index') ? 'active' : ''}}"><a href="{{route('post.index')}}">Home</a></li>
+              <li class="menu-item {{url()->current()==route('post.create') ? 'active' : ''}}"><a href="{{route('post.create')}}">New Post</a></li>
               <li class="menu-item"><a href="">About</a></li>
               <li class="menu-item"><a href="">Blog</a></li>
             </ul>
@@ -73,7 +73,7 @@
     @endif
 
     @yield('content')
-    
+
   </div>
   <!--jQueryドキュメント-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

@@ -68,6 +68,13 @@
   .menu-item{
     border-bottom: 1px solid #333;
     text-align: center;
+
+    &.active{
+      background-color: #333;
+    }
+    &.active>a{
+      color: white;
+    }
   }
   .menu-item a {
     display: block;
