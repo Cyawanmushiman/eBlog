@@ -6,7 +6,7 @@
 
   <div class="home__blogWrapper">
     @foreach($posts as $post)
-    <a href="" class="BlogCard">
+    <a href="{{route('post.show',$post)}}" class="BlogCard">
       <div class="BlogCard__image"><img src="{{asset('storage/eyeCatchImage/'.$post->eyeCatchImage)}}"
           alt="eyeCatchImage"></div>
       <h3 class="BlogCard__title">{{Str::limit($post->title,20,'...')}}</h3>

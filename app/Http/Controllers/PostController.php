@@ -34,4 +34,9 @@ class PostController extends Controller
     Post::create($inputs);
     return back()->with('message','新規投稿を作成しました');
   }
+  
+  public function show(Post $post){
+    return view('post.show',compact('post'));
+  }
 }
+

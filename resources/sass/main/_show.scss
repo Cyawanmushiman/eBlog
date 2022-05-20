@@ -1,0 +1,30 @@
+.single{
+  width: 83%;
+  max-width: 700px;
+  margin: 7.7rem auto 0;
+
+  &__title{
+    @extend %fontPostText;
+    font-size: 2rem;
+    line-height: calc(23/18);
+    letter-spacing: -10%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__image{
+    height: auto;
+    margin-bottom: 2rem;
+    &>img{
+      object-fit: cover;
+    }
+  }
+
+  &__text{
+    @extend %fontPostText;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    letter-spacing: 2px;
+  }
+
+}

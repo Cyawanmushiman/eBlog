@@ -14,6 +14,9 @@ body{
   font-family: "A-OTF Ryumin Pr6N", "メイリオ", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
   font-size: 1.6rem;//bodyを1.6emと指定する事で、その他は何も指定しなければ、16pxとなるとための設定
 }
+%fontPostText{
+  font-family: 'Abril Fatface';
+}
 .bodyWrapper{//フッターをページの下端にくっつける
   display: flex;
   flex-direction: column;

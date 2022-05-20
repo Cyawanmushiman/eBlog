@@ -17,6 +17,10 @@ body {
   font-size: 1.6rem;
 }
 
+.single__text, .single__title, .home__blogWrapper .BlogCard__title {
+  font-family: "Abril Fatface";
+}
+
 .bodyWrapper {
   display: flex;
   flex-direction: column;
@@ -109,7 +113,6 @@ img {
      object-fit: cover;
 }
 .home__blogWrapper .BlogCard__title {
-  font-family: "Abril Fatface";
   font-size: 1.4rem;
 }
 
@@ -338,4 +341,30 @@ nav
   display: grid;
   place-items: center;
   margin: 2rem auto 0;
+}
+
+.single {
+  width: 83%;
+  max-width: 700px;
+  margin: 7.7rem auto 0;
+}
+.single__title {
+  font-size: 2rem;
+  line-height: 1.2777777778;
+  letter-spacing: -10%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.single__image {
+  height: auto;
+  margin-bottom: 2rem;
+}
+.single__image > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.single__text {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  letter-spacing: 2px;
 }
