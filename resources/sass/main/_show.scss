@@ -3,6 +3,21 @@
   max-width: 700px;
   margin: 7.7rem auto 0;
 
+  &__touch{
+    text-align: right;
+  }
+  .singleEdit,.singleDelete{
+    @extend %fontPostText;
+    font-size: 1.6rem;
+  }
+  .singleEdit{
+    color: #BAA1FF;
+    margin-right: 1rem;
+  }
+  .singleDelete{
+    color: #FF7979;
+  }
+
   &__title{
     @extend %fontPostText;
     font-size: 2rem;

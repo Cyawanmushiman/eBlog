@@ -10,6 +10,14 @@
       @extend %pageTitle--japanese;
     }
   }
+
+  .create__image{
+    width: 50%;
+    margin-bottom: 1rem;
+    &>img{
+      object-fit: cover;
+    }
+  }
   
 }
 .create__form{
