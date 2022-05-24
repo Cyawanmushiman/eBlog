@@ -13,5 +13,11 @@
     </a>
     @endforeach
   </div>
+  {{-- {{$posts->links('vendor.pagination.tailwind')}} --}}
+  {{$posts->links('vendor.pagination.custom')}}
+  {{-- @php
+      dd($posts);
+  @endphp --}}
+
 </main>
 @endsection

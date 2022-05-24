@@ -15,7 +15,7 @@ body{
   font-size: 1.6rem;//bodyを1.6emと指定する事で、その他は何も指定しなければ、16pxとなるとための設定
 }
 %fontPostText{
-  font-family: 'Abril Fatface';
+  font-family: 'ABeeZee';
 }
 .bodyWrapper{//フッターをページの下端にくっつける
   display: flex;
@@ -56,7 +56,7 @@ img{
   text-align: center;
   position: relative;
   width: 7rem;
-  margin: 0 auto 2.6rem;
+  margin: 0 auto 3rem;
   z-index: -1;
 
   &::before,&::after{
@@ -74,6 +74,36 @@ img{
   }
   &::after{
     right: -25px;
+  }
+}
+
+.navLinks{
+  width: 69%;
+  max-width: 300px;
+  margin: 0 auto;
+
+  .navLinks__prev{
+    height: auto;
+    &>img{
+      width: 10px;
+    }
+  }
+  .navLinks__next{
+    height: auto;
+    &>img{
+      width: 10px;
+    }
+  }
+  .navLinks__numbers{
+    background-color: #c1c1c1;
+    color: white;
+    border-radius: 50%;
+    margin-left: 0.5rem;
+    padding: 3px 6px;
+
+    &.active{
+      background-color: #333;
+    }
   }
 }
 

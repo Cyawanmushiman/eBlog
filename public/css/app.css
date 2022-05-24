@@ -18,7 +18,7 @@ body {
 }
 
 .single__text, .single__title, .single .singleEdit, .single .singleDelete, .home__blogWrapper .BlogCard__title {
-  font-family: "Abril Fatface";
+  font-family: "ABeeZee";
 }
 
 .bodyWrapper {
@@ -56,7 +56,7 @@ img {
   text-align: center;
   position: relative;
   width: 7rem;
-  margin: 0 auto 2.6rem;
+  margin: 0 auto 3rem;
   z-index: -1;
 }
 .create .create__title--japanese::before, .home .home__title--japanese::before, .create .create__title--japanese::after, .home .home__title--japanese::after {
@@ -76,6 +76,34 @@ img {
   right: -25px;
 }
 
+.navLinks {
+  width: 69%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.navLinks .navLinks__prev {
+  height: auto;
+}
+.navLinks .navLinks__prev > img {
+  width: 10px;
+}
+.navLinks .navLinks__next {
+  height: auto;
+}
+.navLinks .navLinks__next > img {
+  width: 10px;
+}
+.navLinks .navLinks__numbers {
+  background-color: #c1c1c1;
+  color: white;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+  padding: 3px 6px;
+}
+.navLinks .navLinks__numbers.active {
+  background-color: #333;
+}
+
 /*----------------------------------------
       タブレット向け
 ----------------------------------------*/
@@ -90,7 +118,7 @@ img {
 .home {
   width: 95%;
   max-width: 700px;
-  margin: 7.7rem auto 0;
+  margin: 8.2rem auto 0;
 }
 .home__blogWrapper {
   display: flex;
@@ -101,7 +129,7 @@ img {
 }
 .home__blogWrapper .BlogCard {
   width: 44.5%;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 .home__blogWrapper .BlogCard__image {
   height: auto;
@@ -128,6 +156,7 @@ img {
   margin-bottom: 1.8rem;
   position: fixed;
   width: 100%;
+  background-color: #f2faff;
 }
 .header__title {
   font-size: 3rem;

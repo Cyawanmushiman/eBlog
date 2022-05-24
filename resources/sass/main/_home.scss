@@ -1,7 +1,7 @@
 .home{
   width: 95%;
   max-width: 700px;
-  margin: 7.7rem auto 0;
+  margin: 8.2rem auto 0;
 
   .home__title{
     @extend %pageTitle;
@@ -21,7 +21,7 @@
 
   .BlogCard{
     width: 44.5%;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     &__image{
       height: auto;
       margin-bottom: 1rem;
