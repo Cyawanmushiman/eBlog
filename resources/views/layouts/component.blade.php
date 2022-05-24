@@ -25,6 +25,10 @@
     <header class="header">
       <div class="header__search">
         <img src="{{asset('img/search.svg')}}" alt="search-Icon" />
+        <form action="{{route('post.index')}}" method="get">
+          <input class="searchInput" type="text" name="keyword" value="{{$keyword ?? ''}}" placeholder="記事検索">
+          <input type="submit" value="検索">
+        </form>
       </div>
       <a href="index.html" class="header__title">
         eBlog
@@ -57,22 +61,31 @@
 
     @if($errors->any())
     <!-- もし、セッションの中にエラーメッセージがあれば -->
-    <ul>
-      @foreach($errors->all() as $error)
-      <li>{{$error}}</li>
-      @endforeach
-      @if(empty($errors->first('image')))
-      <!-- もし画像ファイル以外でエラーがあれば -->
-      <li>画像ファイルがあれば、再度、選択してください。</li>
-      @endif
-    </ul>
+    <div class="errorMessage">
+      <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+        @if(empty($errors->first('image')))
+        <!-- もし画像ファイル以外でエラーがあれば -->
+        <li>画像ファイルがあれば、再度、選択してください。</li>
+        @endif
+      </ul>
+    </div>
     @endif
 
     @if(session('message'))
-    <div class="">{{session('message')}}</div>
+    <div class="sessionMessage">{{session('message')}}</div>
     @endif
 
     @yield('content')
+
+    <footer class="footer">
+      <a href="index.html" class="footer__title">
+        eBlog
+      </a>
+      <p class="copyRight">©︎ 2022 eBlog</p>
+    </footer>
 
   </div>
   <!--jQueryドキュメント-->

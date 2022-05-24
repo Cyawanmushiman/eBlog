@@ -45,21 +45,19 @@ img {
   display: none;
 }
 
-.create .create__title, .home .home__title {
+.create .create__title, .profile .profile__title, .home .home__title {
   font-size: 2rem;
   text-align: center;
-  margin-bottom: 0.7rem;
 }
 
-.create .create__title--japanese, .home .home__title--japanese {
+.create .create__title--japanese, .profile .profile__title--japanese, .home .home__title--japanese {
   font-size: 1.6rem;
   text-align: center;
   position: relative;
-  width: 7rem;
-  margin: 0 auto 3rem;
+  margin: 0 auto;
   z-index: -1;
 }
-.create .create__title--japanese::before, .home .home__title--japanese::before, .create .create__title--japanese::after, .home .home__title--japanese::after {
+.create .create__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before, .create .create__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
   content: "";
   display: inline-block;
   width: 22px;
@@ -69,10 +67,10 @@ img {
   top: 50%;
   background-color: #333;
 }
-.create .create__title--japanese::before, .home .home__title--japanese::before {
+.create .create__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before {
   left: -25px;
 }
-.create .create__title--japanese::after, .home .home__title--japanese::after {
+.create .create__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
   right: -25px;
 }
 
@@ -118,8 +116,16 @@ img {
 .home {
   width: 95%;
   max-width: 700px;
-  margin: 8.2rem auto 0;
+  margin: 8.2rem auto 6rem;
 }
+.home .home__title {
+  margin-bottom: 0.7rem;
+}
+.home .home__title--japanese {
+  width: 7rem;
+  margin-bottom: 3rem;
+}
+
 .home__blogWrapper {
   display: flex;
   justify-content: space-between;
@@ -130,6 +136,7 @@ img {
 .home__blogWrapper .BlogCard {
   width: 44.5%;
   margin-bottom: 2.5rem;
+  transition: 0.3s all;
 }
 .home__blogWrapper .BlogCard__image {
   height: auto;
@@ -142,6 +149,57 @@ img {
 }
 .home__blogWrapper .BlogCard__title {
   font-size: 1.4rem;
+}
+.home__blogWrapper .BlogCard:hover {
+  transform: translateY(-3%);
+}
+
+.profile .profile__title {
+  margin-bottom: 1rem;
+}
+.profile .profile__title--japanese {
+  width: 10rem;
+  margin-bottom: 1rem;
+}
+.profile .profile__avatar {
+  width: 132px;
+  height: 132px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  border: 1px solid #c1c1c1;
+  overflow: hidden;
+  position: relative;
+}
+.profile .profile__avatar > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.profile .profile__text {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+.profile .profile__name {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.profile .profile__body {
+  text-align: left;
+  font-size: 1.4rem;
+}
+.profile .profile__contactLink, .profile .profile__aboutMe {
+  display: grid;
+  place-items: center;
+  width: 109px;
+  height: 36px;
+  background-color: #A4AFCA;
+  border-radius: 4px;
+  color: white;
+  margin: 0 auto 1rem;
 }
 
 /*----------------------------------------
@@ -169,6 +227,9 @@ img {
   height: 35px;
   margin-top: 1.75rem;
   margin-left: 2.7rem;
+}
+.header .searchInput {
+  border: 1px solid #333;
 }
 
 /*  css ハンバーガーメニュ */
@@ -322,6 +383,22 @@ nav
 
 /*  css ハンバーガーメニュ */
 /* ハンバーガーメニュー */
+.sessionMessage {
+  font-size: 12px;
+  position: absolute;
+  top: 11%;
+  left: 4%;
+  color: limegreen;
+}
+
+.errorMessage {
+  font-size: 12px;
+  position: absolute;
+  top: 11%;
+  left: 4%;
+  color: tomato;
+}
+
 /*----------------------------------------
       タブレット向け
 ----------------------------------------*/
@@ -330,6 +407,20 @@ nav
 ----------------------------------------*/
 .footer {
   margin-top: auto;
+  display: flex;
+  justify-content: space-around;
+  background-color: #a9a9a9;
+  align-items: center;
+}
+.footer__title {
+  font-size: 2rem;
+  font-family: "Abril Fatface";
+  color: #939393;
+}
+.footer .copyRight {
+  font-size: 12px;
+  color: #939393;
+  margin-top: 0.5rem;
 }
 
 /*----------------------------------------

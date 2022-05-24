@@ -48,15 +48,13 @@ img{
 %pageTitle{
   font-size: 2rem;
   text-align: center;
-  margin-bottom: 0.7rem;
 
 }
 %pageTitle--japanese{
   font-size: 1.6rem;
   text-align: center;
   position: relative;
-  width: 7rem;
-  margin: 0 auto 3rem;
+  margin: 0 auto;
   z-index: -1;
 
   &::before,&::after{

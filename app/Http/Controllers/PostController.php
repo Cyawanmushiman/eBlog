@@ -9,11 +9,17 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-    // $posts = Post::orderBy('created_at', 'desc')->get();
-    // $posts = Post::orderBy('created_at', 'desc')->paginate(2)->onEachSide(2);
-    $posts = Post::orderBy('created_at', 'desc')->paginate(2);
+    $keyword = $request->input('keyword');
+
+    $query = Post::query();
+
+    if(!empty($keyword)) {
+      $query->where('title','like','%'.$keyword.'%');
+    }
+    
+    $posts = $query->orderBy('created_at', 'desc')->paginate(10);
     return view('post.index', compact('posts'));
   }
 
