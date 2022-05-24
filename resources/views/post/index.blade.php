@@ -14,7 +14,8 @@
     @endforeach
   </div>
   {{-- {{$posts->links('vendor.pagination.tailwind')}} --}}
-  {{$posts->links('vendor.pagination.custom')}}
+  {{-- {{$posts->onEachSide(2)->links('vendor.pagination.custom')}} --}}
+  {{$posts->links('vendor.pagination.custom-2')}}
   {{-- @php
       dd($posts);
   @endphp --}}
