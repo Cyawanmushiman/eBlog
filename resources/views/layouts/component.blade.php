@@ -24,11 +24,9 @@
   <div class="bodyWrapper">
     <header class="header">
       <div class="header__search">
-        <img src="{{asset('img/search.svg')}}" alt="search-Icon" />
-        <form action="{{route('post.index')}}" method="get">
-          <input class="searchInput" type="text" name="keyword" value="{{$keyword ?? ''}}" placeholder="記事検索">
-          <input type="submit" value="検索">
-        </form>
+        <a href="" class="js_modal_open" data-target="modal01"><img src="{{asset('img/search.svg')}}"
+            alt="search-Icon" /></a>
+        <!--data-target属性を追加する。この値をモーダルウィンドウのID属性とリンクさせることで、どのモーダルウィンドウを開くかわかるようにする。-->
       </div>
       <a href="index.html" class="header__title">
         eBlog
@@ -40,10 +38,13 @@
           <div class="inner">
             <a href="index.html" class="humburgerNav__title">eBlog</a>
             <ul class="menu">
-              <li class="menu-item {{url()->current()==route('post.index') ? 'active' : ''}}"><a href="{{route('post.index')}}">Home</a></li>
-              <li class="menu-item {{url()->current()==route('post.create') ? 'active' : ''}}"><a href="{{route('post.create')}}">New Post</a></li>
+              <li class="menu-item {{url()->current()==route('post.index') ? 'active' : ''}}"><a
+                  href="{{route('post.index')}}">Home</a></li>
+              <li class="menu-item {{url()->current()==route('post.create') ? 'active' : ''}}"><a
+                  href="{{route('post.create')}}">New Post</a></li>
+              <li class="menu-item {{url()->current()==route('form.show') ? 'active' : ''}}"><a
+                  href="{{route('form.show')}}">Contact</a></li>
               <li class="menu-item"><a href="">About</a></li>
-              <li class="menu-item"><a href="">Blog</a></li>
             </ul>
           </div>
         </nav>
@@ -58,6 +59,20 @@
       </div>
       <!-- ハンバーガーメニュー -->
     </header>
+
+    {{-- モーダル --}}
+    <div id="modal01" class="modal js_modal">
+      <!--data-target属性と同じ値のID属性をつける。-->
+      <div class="modal__bg js_modal_close"></div>
+      <div class="modal__content">
+        <form action="{{route('post.index')}}" method="get">
+          <input class="searchInput" type="text" name="keyword" value="{{$keyword ?? ''}}" placeholder="記事検索">
+          <input type="submit" value="検索" class="searchSubmit">
+        </form>
+        <a href="" class="js_modal_close">閉じる</a>
+      </div>
+    </div>
+    {{-- モーダル --}}
 
     @if($errors->any())
     <!-- もし、セッションの中にエラーメッセージがあれば -->
@@ -86,8 +101,8 @@
       </a>
       <p class="copyRight">©︎ 2022 eBlog</p>
     </footer>
-
   </div>
+
   <!--jQueryドキュメント-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -97,6 +112,24 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
   </script>
   <script src="{{asset('js/script.js')}}"></script>
+  <script>
+    let winScrollTop;
+    $('.js_modal_open').each(function(){//.js_modal_openが複数あるので、どのjs_modal_openがクリックされたかわかるようにする。
+      $(this).on("click",function(){
+        winScrollTop = $(window).scrollTop();//winScrollTop = スクロール位置の値
+        let target = $(this).data('target');//dataメソッドで、クリックした「js＿modal＿open」の「data-target」属性を取得し、変数「target」に代入している。つまり target = modal01 or modal02になる。
+        let modal = document.getElementById(target);//指定したIDにマッチする要素を取得できる。
+        //modal = 表示したいもの
+        $(modal).fadeIn(50);
+        return false;//clickイベントを中断する
+      });
+    });
+    $('.js_modal_close').on("click",function(){//js_modal_closeがクリックされたら
+      $('.js_modal').fadeOut(50);//js_modalをフェードアウトして消す。
+      $('body,html').stop().animate({scrollTop:winScrollTop},100);//winScrollTopの位置まで、アニメーションさせながら、0.1秒かけて移動する。
+      return false;
+    });
+  </script>
 </body>
 
 </html>

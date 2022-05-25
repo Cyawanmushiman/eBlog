@@ -1,0 +1,56 @@
+.contact{
+  width: 95%;
+  max-width: 700px;
+  margin: 7.7rem auto 0;
+
+  .contact__title{
+    @extend %pageTitle;
+
+    &--japanese{
+      @extend %pageTitle--japanese;
+      margin-bottom: 3rem;
+      width: 10.5rem;
+    }
+  }
+
+  .contact__image{
+    width: 50%;
+    margin-bottom: 1rem;
+    &>img{
+      object-fit: cover;
+    }
+  }
+  
+}
+.contact__form{
+  width: 87%;
+  margin: 0 auto 3rem;
+  
+  label{
+    font-size: 1.6rem;
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+
+  input,textarea{
+    background-color: #e7e7e7;
+    padding: 0.1rem;
+    margin-bottom: 1.6rem;
+    display: block;
+    width: 100%;
+  }
+
+  textarea{
+    height: 32.6rem;
+  }
+
+  .contact__btn{
+    width: 9.6rem;
+    height: 3.1rem;
+    background-color: #333;
+    color: white;
+    display: grid;
+    place-items: center;
+    margin: 2rem auto 0;
+  }
+}

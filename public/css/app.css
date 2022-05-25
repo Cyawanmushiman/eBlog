@@ -45,19 +45,19 @@ img {
   display: none;
 }
 
-.create .create__title, .profile .profile__title, .home .home__title {
+.contact .contact__title, .create .create__title, .profile .profile__title, .home .home__title {
   font-size: 2rem;
   text-align: center;
 }
 
-.create .create__title--japanese, .profile .profile__title--japanese, .home .home__title--japanese {
+.contact .contact__title--japanese, .create .create__title--japanese, .profile .profile__title--japanese, .home .home__title--japanese {
   font-size: 1.6rem;
   text-align: center;
   position: relative;
   margin: 0 auto;
   z-index: -1;
 }
-.create .create__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before, .create .create__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
+.contact .contact__title--japanese::before, .create .create__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before, .contact .contact__title--japanese::after, .create .create__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
   content: "";
   display: inline-block;
   width: 22px;
@@ -67,10 +67,10 @@ img {
   top: 50%;
   background-color: #333;
 }
-.create .create__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before {
+.contact .contact__title--japanese::before, .create .create__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before {
   left: -25px;
 }
-.create .create__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
+.contact .contact__title--japanese::after, .create .create__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
   right: -25px;
 }
 
@@ -228,8 +228,45 @@ img {
   margin-top: 1.75rem;
   margin-left: 2.7rem;
 }
-.header .searchInput {
+
+.searchInput {
   border: 1px solid #333;
+}
+
+.searchSubmit {
+  background-color: #A4AFCA;
+  border-radius: 4px;
+  color: white;
+  padding: 2px 5px;
+}
+
+.modal {
+  display: none;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.modal__bg {
+  background: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+}
+
+.modal__content {
+  background: white;
+  left: 18%;
+  padding: 20px;
+  position: absolute;
+  top: 19%;
+  transform: translate(-50%, -50%);
+  width: 36%;
+}
+
+.js_modal_close {
+  color: tomato;
 }
 
 /*  css ハンバーガーメニュ */
@@ -399,12 +436,6 @@ nav
   color: tomato;
 }
 
-/*----------------------------------------
-      タブレット向け
-----------------------------------------*/
-/*----------------------------------------
-      pc向け
-----------------------------------------*/
 .footer {
   margin-top: auto;
   display: flex;
@@ -509,4 +540,51 @@ nav
   font-size: 1.6rem;
   line-height: 1.6;
   letter-spacing: 2px;
+}
+
+.contact {
+  width: 95%;
+  max-width: 700px;
+  margin: 7.7rem auto 0;
+}
+.contact .contact__title--japanese {
+  margin-bottom: 3rem;
+  width: 10.5rem;
+}
+.contact .contact__image {
+  width: 50%;
+  margin-bottom: 1rem;
+}
+.contact .contact__image > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.contact__form {
+  width: 87%;
+  margin: 0 auto 3rem;
+}
+.contact__form label {
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+.contact__form input, .contact__form textarea {
+  background-color: #e7e7e7;
+  padding: 0.1rem;
+  margin-bottom: 1.6rem;
+  display: block;
+  width: 100%;
+}
+.contact__form textarea {
+  height: 32.6rem;
+}
+.contact__form .contact__btn {
+  width: 9.6rem;
+  height: 3.1rem;
+  background-color: #333;
+  color: white;
+  display: grid;
+  place-items: center;
+  margin: 2rem auto 0;
 }
