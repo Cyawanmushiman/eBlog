@@ -32,11 +32,8 @@ Route::delete('post/delete/{post}','PostController@delete')->name('post.delete')
 // Route::post('/post/comment/store','CommentController@store')->name('post.store');
 
 //お問い合わせ
-// Route::get('contact/create','ContactController@create')->name('contact.create');
-// Route::post('contact/check','ContactController@check')->name('contact.check');
-Route::get('/form','ContactController@show')->name('form.show');//お問い合わせフォームを表示
-Route::post('/form','ContactController@post')->name('form.post');//セッションに入力値を登録
-Route::get('/form/confirm','ContactController@confirm')->name('form.confirm');//確認画面
-Route::post('/form/confirm','ContactController@send')->name('form.send');//確認画面からフォーム遷移先
-Route::get('form/thanks','ContactController@complete')->name('form.complete');//完了画面
+Route::get('contact/create','ContactController@create')->name('contact.create');
+Route::post('contact/post','ContactController@post')->name('contact.post');
+Route::get('/contact/confirm/','ContactController@confirm')->name('contact.confirm');
+
 

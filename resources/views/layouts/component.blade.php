@@ -42,8 +42,8 @@
                   href="{{route('post.index')}}">Home</a></li>
               <li class="menu-item {{url()->current()==route('post.create') ? 'active' : ''}}"><a
                   href="{{route('post.create')}}">New Post</a></li>
-              <li class="menu-item {{url()->current()==route('form.show') ? 'active' : ''}}"><a
-                  href="{{route('form.show')}}">Contact</a></li>
+              <li class="menu-item {{url()->current()==route('contact.create') ? 'active' : ''}}"><a
+                  href="{{route('contact.create')}}">Contact</a></li>
               <li class="menu-item"><a href="">About</a></li>
             </ul>
           </div>
