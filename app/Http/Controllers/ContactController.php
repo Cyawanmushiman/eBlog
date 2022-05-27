@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Validator;
-use App\Models\Contact;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactForm;
 
@@ -35,11 +33,14 @@ class ContactController extends Controller
       return redirect()->route('contact.create')->withInput($inputs);
     }
 
-    Contact::create($inputs);
+    // Contact::create($inputs);
     Mail::to(config('mail.admin'))->send(new ContactForm($inputs));
-    //config/mail.phpの中のadmin宛にメールを送信する。フォームの送信内容をContactForm.phpに送る。
+    // //config/mail.phpの中のadmin宛にメールを送信する。フォームの送信内容をContactForm.phpに送る。
     Mail::to($inputs['email'])->send(new ContactForm($inputs));
-    //フォームの中のemail宛にメールを送信する
+    // //フォームの中のemail宛にメールを送信する
+
+    $request->session()->regenerateToken();
+
     return redirect()->route('post.index')->with('message','お問い合わせを送信しました');
   }
 }
