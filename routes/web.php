@@ -34,6 +34,8 @@ Route::delete('post/delete/{post}','PostController@delete')->name('post.delete')
 //お問い合わせ
 Route::get('contact/create','ContactController@create')->name('contact.create');
 Route::post('contact/post','ContactController@post')->name('contact.post');
-Route::get('/contact/confirm/','ContactController@confirm')->name('contact.confirm');
+// Route::get('/contact/confirm/{inputs}','ContactController@confirm')->name('contact.confirm');
+Route::get('/contact/confirm','ContactController@confirm')->name('contact.confirm');
+ROute::post('/contact/send','ContactController@send')->name('contact.send');
 
 
