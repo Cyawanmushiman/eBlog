@@ -30,7 +30,6 @@ class ContactController extends Controller
       'body' => 'required|max:10000',
       'email' => 'required|email|max:100',
     ]);
-    dd($request);
 
     if($request->has('back')){
       return redirect()->route('contact.create')->withInput($inputs);
