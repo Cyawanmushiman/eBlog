@@ -48,9 +48,9 @@ class ContactController extends Controller
     }
 
     Mail::to(config('mail.admin'))->send(new ContactForm($inputs));
-    //config/mail.phpの中のadmin宛にメールを送信する。フォームの送信内容をContactForm.phpに送る。
+    // //config/mail.phpの中のadmin宛にメールを送信する。フォームの送信内容をContactForm.phpに送る。
     Mail::to($inputs['email'])->send(new ContactForm($inputs));
-    //フォームの中のemail宛にメールを送信する
+    // //フォームの中のemail宛にメールを送信する
 
     $request->session()->regenerateToken();
 
