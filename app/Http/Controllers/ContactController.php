@@ -1,5 +1,5 @@
 <?php
-
+//dev
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,7 +11,6 @@ class ContactController extends Controller
   public function create(){
     return view('contact.create');
   }
-
   public function confirm(Request $request){
     $inputs = $request->validate([
       'title' => 'required|max:255',
@@ -21,7 +20,7 @@ class ContactController extends Controller
 
     return view('contact.confirm',compact('inputs'));
   }
-
+  
   public function send(Request $request){
     $inputs = $request->validate([
       'title' => 'required|max:255',
