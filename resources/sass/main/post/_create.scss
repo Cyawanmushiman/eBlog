@@ -5,9 +5,11 @@
 
   .create__title{
     @extend %pageTitle;
-
+    margin-bottom: 0.7rem;
     &--japanese{
       @extend %pageTitle--japanese;
+      width: 7rem;
+      margin-bottom: 3rem;
     }
   }
 
@@ -30,7 +32,7 @@
     display: block;
   }
 
-  input:not(:last-of-type),textarea{
+  input:not(:last-of-type),textarea,select{
     background-color: #e7e7e7;
     padding: 0.1rem;
     margin-bottom: 1.6rem;

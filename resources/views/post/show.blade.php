@@ -12,6 +12,7 @@
   </div>
 
   <h1 class="single__title">{{$post->title}}</h1>
+  <p class="single__category">{{$post->category->name}}</p>
   <div class="single__image"><img src="{{asset('storage/eyeCatchImage/'.$post->eyeCatchImage)}}" alt="eyeCatchImage"></div>
   <div class="single__body">
     <p class="single__text">
@@ -20,4 +21,20 @@
   </div>
 
 </main>
+
+<section class="Related">
+  <h1 class="Related__title">Related Posts</h1>
+  <h2 class="Related__title--japanese">関連記事</h2>
+
+  <div class="Related__blogWrapper">
+    @foreach($category_posts as $category_post)
+    <a href="{{route('post.show',$category_post)}}" class="BlogCard">
+      <span class="BlogCard__category">{{ $category_post->category->name }}</span>
+      <div class="BlogCard__image"><img src="{{asset('storage/eyeCatchImage/'.$category_post->eyeCatchImage)}}"
+          alt="eyeCatchImage"></div>
+      <h3 class="BlogCard__title">{{Str::limit($category_post->title,20,'...')}}</h3>
+    </a>
+    @endforeach
+  </div>
+</section>
 @endsection

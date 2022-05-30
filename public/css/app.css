@@ -17,7 +17,7 @@ body {
   font-size: 1.6rem;
 }
 
-.single__text, .single__title, .single .singleEdit, .single .singleDelete, .home__blogWrapper .BlogCard__title {
+.single__text, .single__title, .single .singleEdit, .single .singleDelete, .categories__menu .categories__menuItem > a, .BlogCard__title {
   font-family: "ABeeZee";
 }
 
@@ -45,19 +45,19 @@ img {
   display: none;
 }
 
-.contact .contact__title, .create .create__title, .profile .profile__title, .home .home__title {
+.contact .contact__title, .Related .Related__title, .create .create__title, .categories .categories__title, .profile .profile__title, .home .home__title {
   font-size: 2rem;
   text-align: center;
 }
 
-.contact .contact__title--japanese, .create .create__title--japanese, .profile .profile__title--japanese, .home .home__title--japanese {
+.contact .contact__title--japanese, .Related .Related__title--japanese, .create .create__title--japanese, .categories .categories__title--japanese, .profile .profile__title--japanese, .home .home__title--japanese {
   font-size: 1.6rem;
   text-align: center;
   position: relative;
   margin: 0 auto;
   z-index: -1;
 }
-.contact .contact__title--japanese::before, .create .create__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before, .contact .contact__title--japanese::after, .create .create__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
+.contact .contact__title--japanese::before, .Related .Related__title--japanese::before, .create .create__title--japanese::before, .categories .categories__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before, .contact .contact__title--japanese::after, .Related .Related__title--japanese::after, .create .create__title--japanese::after, .categories .categories__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
   content: "";
   display: inline-block;
   width: 22px;
@@ -67,10 +67,10 @@ img {
   top: 50%;
   background-color: #333;
 }
-.contact .contact__title--japanese::before, .create .create__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before {
+.contact .contact__title--japanese::before, .Related .Related__title--japanese::before, .create .create__title--japanese::before, .categories .categories__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before {
   left: -25px;
 }
-.contact .contact__title--japanese::after, .create .create__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
+.contact .contact__title--japanese::after, .Related .Related__title--japanese::after, .create .create__title--japanese::after, .categories .categories__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
   right: -25px;
 }
 
@@ -100,6 +100,37 @@ img {
 }
 .navLinks .navLinks__numbers.active {
   background-color: #333;
+}
+
+.BlogCard {
+  width: 44.5%;
+  margin-bottom: 2.5rem;
+  transition: 0.3s all;
+  position: relative;
+}
+.BlogCard__category {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 12px;
+  background-color: navy;
+  color: white;
+  padding: 1px 5px;
+}
+.BlogCard__image {
+  height: auto;
+  margin-bottom: 1rem;
+}
+.BlogCard__image > img {
+  height: 96px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.BlogCard__title {
+  font-size: 1.4rem;
+}
+.BlogCard:hover {
+  transform: translateY(-3%);
 }
 
 /*----------------------------------------
@@ -133,27 +164,10 @@ img {
   width: 86%;
   margin: 0 auto;
 }
-.home__blogWrapper .BlogCard {
-  width: 44.5%;
-  margin-bottom: 2.5rem;
-  transition: 0.3s all;
-}
-.home__blogWrapper .BlogCard__image {
-  height: auto;
-  margin-bottom: 1rem;
-}
-.home__blogWrapper .BlogCard__image > img {
-  height: 96px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.home__blogWrapper .BlogCard__title {
-  font-size: 1.4rem;
-}
-.home__blogWrapper .BlogCard:hover {
-  transform: translateY(-3%);
-}
 
+.profile {
+  margin-bottom: 5rem;
+}
 .profile .profile__title {
   margin-bottom: 1rem;
 }
@@ -202,6 +216,35 @@ img {
   margin: 0 auto 1rem;
 }
 
+.categories {
+  width: 70%;
+  margin: 0 auto;
+}
+.categories .categories__title {
+  margin-bottom: 0.7rem;
+}
+.categories .categories__title--japanese {
+  width: 8rem;
+  margin-bottom: 1rem;
+}
+.categories__menu .categories__menuItem {
+  position: relative;
+}
+.categories__menu .categories__menuItem::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #c1c1c1;
+  position: absolute;
+  top: 56%;
+  left: -17px;
+  transform: translateY(-50%);
+}
+.categories__menu .categories__menuItem > a {
+  font-size: 1.4rem;
+}
+
 /*----------------------------------------
       タブレット向け
 ----------------------------------------*/
@@ -215,6 +258,7 @@ img {
   position: fixed;
   width: 100%;
   background-color: #f2faff;
+  z-index: 10;
 }
 .header__title {
   font-size: 3rem;
@@ -465,6 +509,13 @@ nav
   max-width: 700px;
   margin: 7.7rem auto 0;
 }
+.create .create__title {
+  margin-bottom: 0.7rem;
+}
+.create .create__title--japanese {
+  width: 7rem;
+  margin-bottom: 3rem;
+}
 .create .create__image {
   width: 50%;
   margin-bottom: 1rem;
@@ -483,7 +534,7 @@ nav
   margin-bottom: 0.3rem;
   display: block;
 }
-.create__form input:not(:last-of-type), .create__form textarea {
+.create__form input:not(:last-of-type), .create__form textarea, .create__form select {
   background-color: #e7e7e7;
   padding: 0.1rem;
   margin-bottom: 1.6rem;
@@ -506,7 +557,7 @@ nav
 .single {
   width: 83%;
   max-width: 700px;
-  margin: 7.7rem auto 0;
+  margin: 7.7rem auto 8rem;
 }
 .single__touch {
   text-align: right;
@@ -526,7 +577,15 @@ nav
   line-height: 1.2777777778;
   letter-spacing: -10%;
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+.single__category {
+  display: inline-block;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  background-color: navy;
+  color: white;
+  padding: 1px 5px;
 }
 .single__image {
   height: auto;
@@ -540,6 +599,22 @@ nav
   font-size: 1.6rem;
   line-height: 1.6;
   letter-spacing: 2px;
+}
+
+.Related .Related__title {
+  margin-bottom: 0.7rem;
+}
+.Related .Related__title--japanese {
+  width: 7rem;
+  margin-bottom: 3rem;
+}
+
+.Related__blogWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 86%;
+  margin: 0 auto;
 }
 
 .contact {

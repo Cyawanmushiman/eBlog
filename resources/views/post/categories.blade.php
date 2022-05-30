@@ -1,8 +1,8 @@
 @extends('layouts.component')
 @section('content')
 <main class="home">
-  <h1 class="home__title">Posts</h1>
-  <h2 class="home__title--japanese">記事一覧</h2>
+  <h1 class="home__title">{{$category->name}}</h1>
+  <h2 class="home__title--japanese">{{$category->name}}の関連記事</h2>
 
   <div class="home__blogWrapper">
     @foreach($posts as $post)
@@ -14,8 +14,6 @@
     </a>
     @endforeach
   </div>
-
-  {{$posts->links('vendor.pagination.custom-2')}}
 </main>
 
 <section class="profile">

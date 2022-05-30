@@ -1,7 +1,7 @@
 .single{
   width: 83%;
   max-width: 700px;
-  margin: 7.7rem auto 0;
+  margin: 7.7rem auto 8rem;
 
   &__touch{
     text-align: right;
@@ -18,15 +18,24 @@
     color: #FF7979;
   }
 
+  
   &__title{
     @extend %fontPostText;
     font-size: 2rem;
     line-height: calc(23/18);
     letter-spacing: -10%;
     margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
-
+  
+  &__category{
+    display: inline-block;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    background-color: navy;
+    color: white;
+    padding: 1px 5px;
+  }
   &__image{
     height: auto;
     margin-bottom: 2rem;
@@ -41,5 +50,24 @@
     line-height: 1.6;
     letter-spacing: 2px;
   }
+}
 
+.Related{
+  .Related__title{
+    @extend %pageTitle;
+    margin-bottom: 0.7rem;
+    &--japanese{
+      @extend %pageTitle--japanese;
+      width: 7rem;
+      margin-bottom: 3rem;
+    }
+  }
+}
+
+.Related__blogWrapper{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 86%;
+  margin: 0 auto;
 }
