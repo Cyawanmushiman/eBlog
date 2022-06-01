@@ -1,8 +1,11 @@
 @extends('layouts.component')
 @section('content')
+{{Breadcrumbs::render('home')}}
 <main class="home">
-  <h1 class="home__title">Posts</h1>
-  <h2 class="home__title--japanese">記事一覧</h2>
+  <div class="titleWrapper">
+    <h1 class="home__title">Posts</h1>
+    <h2 class="home__title--japanese">記事一覧</h2>
+  </div>
 
   <div class="home__blogWrapper">
     @foreach($posts as $post)
@@ -19,8 +22,10 @@
 </main>
 
 <section class="profile">
-  <h1 class="profile__title">Profile</h1>
-  <h2 class="profile__title--japanese">プロフィール</h2>
+  <div class="titleWrapper">
+    <h1 class="profile__title">Profile</h1>
+    <h2 class="profile__title--japanese">プロフィール</h2>
+  </div>
 
   <div class="profile__avatar"><img src="{{asset('img/avatar.png')}}" alt="アバター"></div>
 
@@ -35,8 +40,10 @@
 </section>
 
 <section class="categories">
-  <h1 class="categories__title">Category</h1>
-  <h2 class="categories__title--japanese">カテゴリー</h2>
+  <div class="titleWrapper">
+    <h1 class="categories__title">Category</h1>
+    <h2 class="categories__title--japanese">カテゴリー</h2>
+  </div>
 
   <ul class="categories__menu">
     @foreach($categories as $category)

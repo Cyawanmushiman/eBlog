@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -23,12 +23,23 @@ class PostController extends Controller
     return view('post.index', compact('posts','categories'));
   }
 
+  /**
+   * Undocumented function
+   *
+   * @return void
+   */
   public function create()
   {
     $categories = Category::all();
     return view('post.create',compact('categories'));
   }
 
+  /**
+   * Undocumented function
+   *
+   * @param Request $request
+   * @return void
+   */
   public function store(Request $request)
   {
     $inputs = $request->validate([
@@ -66,15 +77,30 @@ class PostController extends Controller
     $category_posts = Post::where('category_id',$post->category->id)
       ->limit(2)
       ->get();
-    return view('post.show', compact('post','category_posts'));
+    return view('post.show', [
+      'post' => $post,
+      'category_posts' => $category_posts
+    ]);
   }
-
+  
+  /**
+   * Undocumented function
+   *
+   * @param Post $post
+   * @return void
+   */
   public function edit(Post $post)
   {
     $categories = Category::all();
     return view('post.edit', compact('post','categories'));
   }
-
+  /**
+   * Undocumented function
+   *
+   * @param Request $request
+   * @param Post $post
+   * @return void
+   */
   public function update(Request $request, Post $post)
   {
     $inputs = $request->validate([

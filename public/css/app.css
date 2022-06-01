@@ -45,6 +45,10 @@ img {
   display: none;
 }
 
+.titleWrapper {
+  text-align: center;
+}
+
 .contact .contact__title, .Related .Related__title, .create .create__title, .categories .categories__title, .profile .profile__title, .home .home__title {
   font-size: 2rem;
   text-align: center;
@@ -52,7 +56,7 @@ img {
 
 .contact .contact__title--japanese, .Related .Related__title--japanese, .create .create__title--japanese, .categories .categories__title--japanese, .profile .profile__title--japanese, .home .home__title--japanese {
   font-size: 1.6rem;
-  text-align: center;
+  display: inline-block;
   position: relative;
   margin: 0 auto;
   z-index: -1;
@@ -133,6 +137,14 @@ img {
   transform: translateY(-3%);
 }
 
+.breadcrumb {
+  padding: 0.4rem 1rem;
+  font-size: 14px;
+  position: fixed;
+  top: 8.3%;
+  width: 100%;
+}
+
 /*----------------------------------------
       タブレット向け
 ----------------------------------------*/
@@ -147,13 +159,12 @@ img {
 .home {
   width: 95%;
   max-width: 700px;
-  margin: 8.2rem auto 6rem;
+  margin: 11rem auto 6rem;
 }
 .home .home__title {
   margin-bottom: 0.7rem;
 }
 .home .home__title--japanese {
-  width: 7rem;
   margin-bottom: 3rem;
 }
 
@@ -172,7 +183,6 @@ img {
   margin-bottom: 1rem;
 }
 .profile .profile__title--japanese {
-  width: 10rem;
   margin-bottom: 1rem;
 }
 .profile .profile__avatar {
@@ -224,7 +234,6 @@ img {
   margin-bottom: 0.7rem;
 }
 .categories .categories__title--japanese {
-  width: 8rem;
   margin-bottom: 1rem;
 }
 .categories__menu .categories__menuItem {
@@ -301,12 +310,13 @@ img {
 
 .modal__content {
   background: white;
-  left: 18%;
+  left: 50%;
   padding: 20px;
   position: absolute;
   top: 19%;
   transform: translate(-50%, -50%);
-  width: 36%;
+  width: 100%;
+  max-width: 300px;
 }
 
 .js_modal_close {
@@ -507,13 +517,12 @@ nav
 .create {
   width: 95%;
   max-width: 700px;
-  margin: 7.7rem auto 0;
+  margin: 11rem auto 0;
 }
 .create .create__title {
   margin-bottom: 0.7rem;
 }
 .create .create__title--japanese {
-  width: 7rem;
   margin-bottom: 3rem;
 }
 .create .create__image {
@@ -557,7 +566,7 @@ nav
 .single {
   width: 83%;
   max-width: 700px;
-  margin: 7.7rem auto 8rem;
+  margin: 11rem auto 8rem;
 }
 .single__touch {
   text-align: right;
@@ -605,7 +614,6 @@ nav
   margin-bottom: 0.7rem;
 }
 .Related .Related__title--japanese {
-  width: 7rem;
   margin-bottom: 3rem;
 }
 
@@ -620,11 +628,10 @@ nav
 .contact {
   width: 95%;
   max-width: 700px;
-  margin: 7.7rem auto 0;
+  margin: 11rem auto 0;
 }
 .contact .contact__title--japanese {
   margin-bottom: 3rem;
-  width: 10.5rem;
 }
 .contact .contact__image {
   width: 50%;

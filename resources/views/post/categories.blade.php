@@ -1,10 +1,16 @@
 @extends('layouts.component')
 @section('content')
+{{Breadcrumbs::render('category',$category)}}
 <main class="home">
-  <h1 class="home__title">{{$category->name}}</h1>
-  <h2 class="home__title--japanese">{{$category->name}}の関連記事</h2>
+  <div class="titleWrapper">
+    <h1 class="home__title">{{$category->name}}</h1>
+    <h2 class="home__title--japanese">{{$category->name}}の記事</h2>
+  </div>
 
   <div class="home__blogWrapper">
+    @if(count($posts) == 0)
+      <p>まだ投稿がありません</p>
+    @endif
     @foreach($posts as $post)
     <a href="{{route('post.show',$post)}}" class="BlogCard">
       <span class="BlogCard__category">{{ $post->category->name }}</span>
@@ -17,8 +23,10 @@
 </main>
 
 <section class="profile">
-  <h1 class="profile__title">Profile</h1>
-  <h2 class="profile__title--japanese">プロフィール</h2>
+  <div class="titleWrapper">
+    <h1 class="profile__title">Profile</h1>
+    <h2 class="profile__title--japanese">プロフィール</h2>
+  </div>
 
   <div class="profile__avatar"><img src="{{asset('img/avatar.png')}}" alt="アバター"></div>
 
@@ -33,8 +41,10 @@
 </section>
 
 <section class="categories">
-  <h1 class="categories__title">Category</h1>
-  <h2 class="categories__title--japanese">カテゴリー</h2>
+  <div class="titleWrapper">
+    <h1 class="categories__title">Category</h1>
+    <h2 class="categories__title--japanese">カテゴリー</h2>
+  </div>
 
   <ul class="categories__menu">
     @foreach($categories as $category)

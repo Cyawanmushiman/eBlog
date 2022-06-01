@@ -1,8 +1,11 @@
 @extends('layouts.component')
 @section('content')
+{{Breadcrumbs::render('newPost')}}
 <div class="create">
-  <h1 class="create__title">New Post</h1>
-  <h2 class="create__title--japanese">新規投稿</h2>
+  <div class="titleWrapper">
+    <h1 class="create__title">New Post</h1>
+    <h2 class="create__title--japanese">新規投稿</h2>
+  </div>
 
   <form class="create__form" action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
     @csrf

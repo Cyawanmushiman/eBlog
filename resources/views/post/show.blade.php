@@ -1,5 +1,6 @@
 @extends('layouts.component')
 @section('content')
+{{Breadcrumbs::render('show',$post)}}
 <main class="single">
 
   <div class="single__touch">
@@ -23,8 +24,10 @@
 </main>
 
 <section class="Related">
-  <h1 class="Related__title">Related Posts</h1>
-  <h2 class="Related__title--japanese">関連記事</h2>
+  <div class="titleWrapper">
+    <h1 class="Related__title">Related Posts</h1>
+    <h2 class="Related__title--japanese">関連記事</h2>
+  </div>
 
   <div class="Related__blogWrapper">
     @foreach($category_posts as $category_post)

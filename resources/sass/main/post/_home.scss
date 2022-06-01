@@ -1,7 +1,7 @@
 .home{
   width: 95%;
   max-width: 700px;
-  margin: 8.2rem auto 6rem;
+  margin: 11rem auto 6rem;
 
   .home__title{
     @extend %pageTitle;
@@ -9,7 +9,6 @@
   
     &--japanese{
       @extend %pageTitle--japanese;
-      width: 7rem;
       margin-bottom: 3rem;
     }
   }
@@ -31,7 +30,6 @@
   
     &--japanese{
       @extend %pageTitle--japanese;
-      width: 10rem;
       margin-bottom: 1rem;
     }
   }
@@ -87,7 +85,6 @@
   
     &--japanese{
       @extend %pageTitle--japanese;
-      width: 8rem;
       margin-bottom: 1rem;
     }
   }

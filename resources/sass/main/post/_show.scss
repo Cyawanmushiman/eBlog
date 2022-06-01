@@ -1,7 +1,7 @@
 .single{
   width: 83%;
   max-width: 700px;
-  margin: 7.7rem auto 8rem;
+  margin: 11rem auto 8rem;
 
   &__touch{
     text-align: right;
@@ -58,7 +58,6 @@
     margin-bottom: 0.7rem;
     &--japanese{
       @extend %pageTitle--japanese;
-      width: 7rem;
       margin-bottom: 3rem;
     }
   }

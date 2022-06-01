@@ -39,18 +39,20 @@ img{
 .br-sp{
   display: none;
 }
+
+.titleWrapper{
+  text-align: center;
+}
 %pageTitle{
   font-size: 2rem;
   text-align: center;
-
 }
 %pageTitle--japanese{
   font-size: 1.6rem;
-  text-align: center;
+  display: inline-block;
   position: relative;
   margin: 0 auto;
   z-index: -1;
-
   &::before,&::after{
     content: '';
     display: inline-block;
@@ -133,7 +135,13 @@ img{
   }
 }
 
-
+.breadcrumb {
+  padding: 0.4rem 1rem;
+  font-size: 14px;
+  position: fixed;
+  top: 8.3%;
+  width: 100%;
+}
 
 /*----------------------------------------
       タブレット向け
