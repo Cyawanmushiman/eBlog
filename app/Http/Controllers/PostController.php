@@ -19,8 +19,9 @@ class PostController extends Controller
       $query->where('title','like','%'.$keyword.'%');
     }
     $posts = $query->orderBy('created_at', 'desc')->paginate(10);
-    $categories = Category::all();
-    return view('post.index', compact('posts','categories'));
+    return view('post.index',[
+      'posts' => $posts,
+    ]);
   }
 
   /**
@@ -153,5 +154,9 @@ class PostController extends Controller
     $categories = Category::all();
     return view('post.categories',compact('posts','categories','category'));
     //$categoryはルートパラメータで渡してます。
+  }
+
+  public function getCategories(){
+    return $categories = Category::all();
   }
 }
