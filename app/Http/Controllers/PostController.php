@@ -54,7 +54,7 @@ class PostController extends Controller
     if($request->category_id == ""){
       $request->category_id = 1;
     }
-    if($request->has('newCategory_name')){
+  if(isset($request->newCategory_name)){
       $newCategory_name = $request->newCategory_name;
       $newCategory = Category::create(['name' => $newCategory_name]);
       $request->category_id = $newCategory->id;

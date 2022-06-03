@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use cebe\markdown\Markdown as Markdown;
+
 
 class Post extends Model
 {
@@ -23,5 +25,16 @@ class Post extends Model
 
     public function category(){
       return $this->belongsTo('App\Models\Category');
+    }
+
+    //markdown
+    public function parse() {
+      //newでインスタンスを作る
+      $parser = new Markdown();
+      //bodyをパースする
+      return $parser->parse($this->body);
+    }
+    public function getMarkBodyAttribute(){
+      return $this->parse();
     }
 }

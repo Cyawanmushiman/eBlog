@@ -44,11 +44,17 @@
     }
   }
 
-  &__text{
+  .single__texts{
     @extend %fontPostText;
-    font-size: 1.6rem;
-    line-height: 1.6;
-    letter-spacing: 2px;
+    & > h1{
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      padding: 2rem 2rem;
+      border-left: solid 5px navy;
+      background-color: #ececff;
+      border-radius: 5px;
+    }
   }
 }
 

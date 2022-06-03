@@ -16,9 +16,9 @@
   <p class="single__category">{{$post->category->name}}</p>
   <div class="single__image"><img src="{{asset('storage/eyeCatchImage/'.$post->eyeCatchImage)}}" alt="eyeCatchImage"></div>
   <div class="single__body">
-    <p class="single__text">
-      {{$post->body}}
-    </p>
+    <div class="single__texts">
+      {!! ($post->mark_body) !!}
+    </div>
   </div>
 
 </main>
