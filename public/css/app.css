@@ -614,6 +614,14 @@ nav
   background-color: #ececff;
   border-radius: 5px;
 }
+.single .single__texts strong {
+  background-color: #ffff72;
+  padding: 3px;
+}
+.single .single__texts pre {
+  padding: 10px;
+  background-color: #e9e9e9;
+}
 
 .Related .Related__title {
   margin-bottom: 0.7rem;

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Mail\Markdown;
 
 
 
@@ -78,9 +79,11 @@ class PostController extends Controller
     $category_posts = Post::where('category_id',$post->category->id)
       ->limit(2)
       ->get();
+    $markdown = Markdown::parse($post->body);
     return view('post.show', [
       'post' => $post,
-      'category_posts' => $category_posts
+      'category_posts' => $category_posts,
+      'markdown' => $markdown,
     ]);
   }
   

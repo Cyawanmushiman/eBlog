@@ -55,6 +55,15 @@
       background-color: #ececff;
       border-radius: 5px;
     }
+    & strong {
+      background-color: #ffff72;
+      padding: 3px;
+    }
+
+    & pre {
+      padding: 10px;
+      background-color: #e9e9e9;
+    }
   }
 }
 
