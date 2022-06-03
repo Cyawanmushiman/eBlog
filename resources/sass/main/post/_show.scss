@@ -55,6 +55,21 @@
       background-color: #ececff;
       border-radius: 5px;
     }
+    & > h2{
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      border-left: solid 5px navy;
+      border-radius: 5px;
+    }
+    & > h3{
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      padding: 0.5rem 1rem;
+      border-bottom: solid 5px #ececff;
+    }
     & strong {
       background-color: #ffff72;
       padding: 3px;
@@ -64,10 +79,31 @@
       padding: 10px;
       background-color: #e9e9e9;
     }
+    & p>code {
+      background-color: #ececff;
+      color: black
+    }
+    & ul>li{
+      position: relative;
+      padding-left: 20px;
+    }
+    & ul>li::before{
+      content: '';
+      position: absolute;
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: yellow;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
   }
 }
 
 .Related{
+  margin-bottom: 5rem;
   .Related__title{
     @extend %pageTitle;
     margin-bottom: 0.7rem;

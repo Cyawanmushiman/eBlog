@@ -518,7 +518,7 @@ nav
 .create {
   width: 95%;
   max-width: 700px;
-  margin: 11rem auto 0;
+  margin: 11rem auto 10rem;
 }
 .create .create__title {
   margin-bottom: 0.7rem;
@@ -614,6 +614,21 @@ nav
   background-color: #ececff;
   border-radius: 5px;
 }
+.single .single__texts > h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  border-left: solid 5px navy;
+  border-radius: 5px;
+}
+.single .single__texts > h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1rem;
+  border-bottom: solid 5px #ececff;
+}
 .single .single__texts strong {
   background-color: #ffff72;
   padding: 3px;
@@ -622,7 +637,30 @@ nav
   padding: 10px;
   background-color: #e9e9e9;
 }
+.single .single__texts p > code {
+  background-color: #ececff;
+  color: black;
+}
+.single .single__texts ul > li {
+  position: relative;
+  padding-left: 20px;
+}
+.single .single__texts ul > li::before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: yellow;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
 
+.Related {
+  margin-bottom: 5rem;
+}
 .Related .Related__title {
   margin-bottom: 0.7rem;
 }
@@ -641,7 +679,7 @@ nav
 .contact {
   width: 95%;
   max-width: 700px;
-  margin: 11rem auto 0;
+  margin: 11rem auto 10rem;
 }
 .contact .contact__title--japanese {
   margin-bottom: 3rem;
