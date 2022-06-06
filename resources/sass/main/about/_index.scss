@@ -1,50 +1,43 @@
-.single{
-  width: 83%;
+.about{
+  width: 95%;
   max-width: 700px;
-  margin: 11rem auto 8rem;
+  margin: 11rem auto 6rem;
 
-  &__touch{
-    text-align: right;
+  .about__title{
+    @extend %pageTitle;
+    margin-bottom: 0.7rem;
+  
+    &--japanese{
+      @extend %pageTitle--japanese;
+      margin-bottom: 3rem;
+    }
   }
-  .singleEdit,.singleDelete{
-    @extend %fontPostText;
-    font-size: 1.6rem;
-  }
-  .singleEdit{
-    color: #BAA1FF;
-    margin-right: 1rem;
-  }
-  .singleDelete{
-    color: #FF7979;
-  }
+}
 
+.about__blogWrapper{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 86%;
+  margin: 0 auto;
+}
+
+.selfAbout{
+  width: 95%;
+  max-width: 700px;
+  margin: 11rem auto 6rem;
+
+  .selfAbout__title{
+    @extend %pageTitle;
+    margin-bottom: 0.7rem;
   
-  &__title{
-    @extend %fontPostText;
-    font-size: 2rem;
-    line-height: calc(23/18);
-    letter-spacing: -10%;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  &__category{
-    display: inline-block;
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-    background-color: navy;
-    color: white;
-    padding: 1px 5px;
-  }
-  &__image{
-    height: auto;
-    margin-bottom: 2rem;
-    &>img{
-      object-fit: cover;
+    &--japanese{
+      @extend %pageTitle--japanese;
+      margin-bottom: 3rem;
     }
   }
 
-  .single__texts{
+  .selfAbout__body{
     @extend %fontPostText;
     & > h1{
       font-size: 3rem;
@@ -54,6 +47,9 @@
       border-left: solid 5px navy;
       background-color: #ececff;
       border-radius: 5px;
+    }
+    & > h1:not(:first-of-type){
+      margin-top: 5rem;
     }
     & > h2{
       font-size: 2.5rem;
@@ -99,31 +95,15 @@
       left: 0;
       transform: translateY(-50%);
     }
-    & ul>br{
-      display: none;
-    }
-    & > br{
-      display: none;
-    }
   }
 }
-
-.Related{
-  margin-bottom: 5rem;
-  .Related__title{
-    @extend %pageTitle;
-    margin-bottom: 0.7rem;
-    &--japanese{
-      @extend %pageTitle--japanese;
-      margin-bottom: 3rem;
-    }
-  }
+/*----------------------------------------
+      タブレット向け
+----------------------------------------*/
+@media (min-width: 600px) {
 }
-
-.Related__blogWrapper{
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 86%;
-  margin: 0 auto;
+/*----------------------------------------
+      pc向け
+----------------------------------------*/
+@media (min-width: 1025px) {
 }

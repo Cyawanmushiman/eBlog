@@ -40,3 +40,9 @@ Breadcrumbs::for('edit', function ($trail,$post) {
   $trail->push('編集',route('post.edit',['post' => $post]));
 });
 
+//Home > about
+Breadcrumbs::for('about',function ($trail) {
+  $trail->parent('home');
+  $trail->push('About',route('about.index'));
+});
+

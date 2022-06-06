@@ -17,7 +17,7 @@
   <div class="single__image"><img src="{{asset('storage/eyeCatchImage/'.$post->eyeCatchImage)}}" alt="eyeCatchImage"></div>
   <div class="single__body">
     <div class="single__texts">
-      {!! $markdown !!}
+      {!! nl2br($markdown) !!}
     </div>
   </div>
 

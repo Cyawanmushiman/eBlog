@@ -47,7 +47,7 @@ class PostController extends Controller
     $inputs = $request->validate([
       'title' => 'required|max:255',
       'body' => 'required|max:5000',
-      'eyeCatchImage' => 'image|max:5120',
+      'eyeCatchImage' => 'image',
       'newCategory_name' => ['name' => 'unique:Categories,name'],
     ]);
 
@@ -110,14 +110,11 @@ class PostController extends Controller
     $inputs = $request->validate([
       'title' => 'required|max:255',
       'body' => 'required|max:5000',
-      'eyeCatchImage' => 'image|max:5120',
+      'eyeCatchImage' => 'image',
       'newCategory_name' => ['name' => 'unique:Categories,name'],
     ]);
 
     //カテゴリー
-    // dd($request->has('newCategory_name'));
-    // dd(isset($request->newCategory_name));
-
     if($request->category_id == ""){
       $request->category_id = 1;
     }
