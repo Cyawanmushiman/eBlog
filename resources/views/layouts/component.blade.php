@@ -40,11 +40,14 @@
             <ul class="menu">
               <li class="menu-item {{url()->current()==route('post.index') ? 'active' : ''}}"><a
                   href="{{route('post.index')}}">Home</a></li>
-              <li class="menu-item {{url()->current()==route('post.create') ? 'active' : ''}}"><a
-                  href="{{route('post.create')}}">New Post</a></li>
               <li class="menu-item {{url()->current()==route('contact.create') ? 'active' : ''}}"><a
                   href="{{route('contact.create')}}">Contact</a></li>
-              <li class="menu-item {{url()->current() == route('about.index') ? 'active' : ''}}"><a href="{{route('about.index')}}">About</a></li>
+              <li class="menu-item {{url()->current() == route('about.index') ? 'active' : ''}}"><a
+                  href="{{route('about.index')}}">About</a></li>
+              @can('admin')
+              <li class="menu-item {{url()->current()==route('post.create') ? 'active' : ''}}"><a
+                  href="{{route('post.create')}}">New Post</a></li>
+              @endcan
             </ul>
           </div>
         </nav>
