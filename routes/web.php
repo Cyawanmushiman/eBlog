@@ -13,21 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/','PostController@index')->name('post.index');
 Auth::routes();
 
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/logout','UserController@getLogout')->name('logout');
 
-Route::get('post/create','PostController@create')->name('post.create');
-Route::post('post/store','PostController@store')->name('post.store');
+Route::middleware(['can:admin'])->group(function(){
+  Route::get('/logout','UserController@getLogout')->name('logout');
+  Route::get('post/create','PostController@create')->name('post.create');
+  Route::post('post/store','PostController@store')->name('post.store');
+  Route::get('post/{post}/edit','PostController@edit')->name('post.edit');
+  Route::put('post/update/{post}','PostController@update')->name('post.update');
+  Route::delete('post/delete/{post}','PostController@delete')->name('post.delete');
+});
+
 Route::get('post/index','PostController@index')->name('post.index');
 Route::get('post/show/{post}','PostController@show')->name('post.show');
-Route::get('post/{post}/edit','PostController@edit')->name('post.edit');
-Route::put('post/update/{post}','PostController@update')->name('post.update');
-Route::delete('post/delete/{post}','PostController@delete')->name('post.delete');
 Route::get('post/categories/{category}','PostController@categories')->name('post.categories');
 
 //コメント
@@ -38,5 +42,5 @@ Route::get('contact/create','ContactController@create')->name('contact.create');
 Route::post('contact/confirm','ContactController@confirm')->name('contact.confirm');
 Route::post('contact/send','ContactController@send')->name('contact.send');
 
-//管理者用ページ
+//管理者情報ページ
 Route::get('about/index','AboutController@index')->name('about.index');
