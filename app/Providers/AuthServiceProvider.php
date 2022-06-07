@@ -25,6 +25,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('admin', function($user){
+          //Gateの名前は’admin'とする。
+          foreach($user->roles as $role) {
+            if ($role->role == 'admin'){
+              return true;
+            }
+          }
+          //adminが定義されていない
+          return false;
+        });
     }
 }
