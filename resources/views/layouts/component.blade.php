@@ -94,7 +94,7 @@
     @endif
 
     @yield('content')
-    @include('layouts.sidebar')
+
     <footer class="footer">
       <a href="index.html" class="footer__title">
         eBlog
