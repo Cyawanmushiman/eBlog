@@ -6,6 +6,7 @@
     <div class="col-md-8">
       <main class="single">
       
+        @can('admin')
         <div class="single__touch">
           <a href="{{route('post.edit',$post)}}" class="singleEdit">edit</a>
           <form method="post" action="{{route('post.delete',$post)}}">
@@ -14,6 +15,7 @@
             <button type="submit" class="singleDelete" onclick="return confirm('この投稿を削除してよろしいですか？')">delete</button>
           </form>
         </div>
+        @endcan
       
         <h1 class="single__title">{{$post->title}}</h1>
         <p class="single__category">{{$post->category->name}}</p>
