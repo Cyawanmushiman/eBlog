@@ -1,4 +1,10 @@
 <?php
+/**
+ * 投稿機能に関する処理を記述
+ * 
+ * @version 1.0
+ * @author 小川英嗣 <xiaochuanyingsi@gmail.com>
+ */
 
 declare(strict_types=1);
 
@@ -14,6 +20,12 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+  /**
+   * Undocumented function
+   *
+   * @param Request $request
+   * @return void
+   */
   public function index(Request $request)
   {
     //キーワード受け取り
