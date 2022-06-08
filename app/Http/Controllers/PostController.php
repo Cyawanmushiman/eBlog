@@ -1,12 +1,14 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Post;
 use App\Models\Category;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Post;
+use Illuminate\Http\Request;
 use Illuminate\Mail\Markdown;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -16,11 +18,13 @@ class PostController extends Controller
   {
     $keyword = $request->input('keyword');
     $query = Post::query();
-    if(!empty($keyword)) {
-      $query->where('title','like','%'.$keyword.'%');
+    if (isset($keyword)) {
+      $query->where('title', 'like', '%' . $keyword . '%');
     }
-    $posts = $query->orderBy('created_at', 'desc')->paginate(10);
-    return view('post.index',[
+    // dd($query);
+    $posts = $query->orderBy('created_at', 'desc')
+      ->paginate(10);
+    return view('post.index', [
       'posts' => $posts,
     ]);
   }
@@ -33,7 +37,7 @@ class PostController extends Controller
   public function create()
   {
     $categories = Category::all();
-    return view('post.create',compact('categories'));
+    return view('post.create', compact('categories'));
   }
 
   /**
@@ -52,10 +56,10 @@ class PostController extends Controller
     ]);
 
     //カテゴリー
-    if($request->category_id === ""){
+    if ($request->category_id === "") {
       $request->category_id = 1;
     }
-  if(isset($request->newCategory_name)){
+    if (isset($request->newCategory_name)) {
       $newCategory_name = $request->newCategory_name;
       $newCategory = Category::create(['name' => $newCategory_name]);
       $request->category_id = $newCategory->id;
@@ -64,10 +68,11 @@ class PostController extends Controller
 
     //eyeCatchImage
     if ($request->file('eyeCatchImage')) {
-      $original = $request->file('eyeCatchImage')->getClientOriginalName();
+      $original = $request->file('eyeCatchImage')
+        ->getClientOriginalName();
       $name = date('Ymd_His') . '_' . $original;
-      $request->file('eyeCatchImage')->move('storage/eyeCatchImage/', $name);
-
+      $request->file('eyeCatchImage')
+        ->move('storage/eyeCatchImage/', $name);
       $inputs['eyeCatchImage'] = $name;
     }
     Post::create($inputs);
@@ -76,7 +81,7 @@ class PostController extends Controller
 
   public function show(Post $post)
   {
-    $category_posts = Post::where('category_id',$post->category->id)
+    $category_posts = Post::where('category_id', $post->category->id)
       ->limit(2)
       ->get();
     $markdown = Markdown::parse($post->body);
@@ -86,7 +91,7 @@ class PostController extends Controller
       'markdown' => $markdown,
     ]);
   }
-  
+
   /**
    * Undocumented function
    *
@@ -96,7 +101,7 @@ class PostController extends Controller
   public function edit(Post $post)
   {
     $categories = Category::all();
-    return view('post.edit', compact('post','categories'));
+    return view('post.edit', compact('post', 'categories'));
   }
   /**
    * Undocumented function
@@ -115,10 +120,10 @@ class PostController extends Controller
     ]);
 
     //カテゴリー
-    if($request->category_id === ""){
+    if ($request->category_id === "") {
       $request->category_id = 1;
     }
-    if(isset($request->newCategory_name)){
+    if (isset($request->newCategory_name)) {
       $newCategory_name = $request->newCategory_name;
       $newCategory = Category::create(['name' => $newCategory_name]);
       $request->category_id = $newCategory->id;
@@ -141,22 +146,25 @@ class PostController extends Controller
     return back()->with('message', '投稿を更新しました');
   }
 
-  public function delete(Request $request,Post $post){
-    if($post->eyeCatchImage !== 'noImage.png'){
-      Storage::disk('public')->delete('eyeCatchImage/'.$post->eyeCatchImage);
+  public function delete(Request $request, Post $post)
+  {
+    if ($post->eyeCatchImage !== 'noImage.png') {
+      Storage::disk('public')->delete('eyeCatchImage/' . $post->eyeCatchImage);
     }
     $post->delete();
-    return redirect()->route('post.index')->with('message','一つの投稿を削除しました');
+    return redirect()->route('post.index')->with('message', '一つの投稿を削除しました');
   }
 
-  public function categories(Category $category){
+  public function categories(Category $category)
+  {
     $posts = $category->posts()->get();
     $categories = Category::all();
-    return view('post.categories',compact('posts','categories','category'));
+    return view('post.categories', compact('posts', 'categories', 'category'));
     //$categoryはルートパラメータで渡してます。
   }
 
-  public function getCategories(){
+  public function getCategories()
+  {
     return $categories = Category::all();
   }
 }
