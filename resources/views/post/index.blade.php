@@ -20,7 +20,7 @@
         @endforeach
       </div>
     
-      {{$posts->links('vendor.pagination.custom-2')}}
+      {{$posts->appends(['keyword'=>$keyword])->links('vendor.pagination.custom-2')}}
     </main>
     @include('layouts.sidebar')
   </div>

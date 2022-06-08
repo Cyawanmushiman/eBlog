@@ -16,16 +16,22 @@ class PostController extends Controller
 {
   public function index(Request $request)
   {
+    //キーワード受け取り
     $keyword = $request->input('keyword');
+
+    //クエリ生成
     $query = Post::query();
+
+    //もしキーワードがあったら
     if (isset($keyword)) {
       $query->where('title', 'like', '%' . $keyword . '%');
     }
-    // dd($query);
+    
     $posts = $query->orderBy('created_at', 'desc')
       ->paginate(10);
     return view('post.index', [
       'posts' => $posts,
+      'keyword' => $keyword,
     ]);
   }
 
