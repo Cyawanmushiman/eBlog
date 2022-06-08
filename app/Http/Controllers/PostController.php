@@ -15,15 +15,18 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\Storage;
-
-
+use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Php;
 
 class PostController extends Controller
 {
   /**
-   * Undocumented function
+   * 記事一覧の表示。ホーム画面。
    *
    * @param Request $request
+   * 
+   * @var string $keyword 「検索」で入力された値
+   * @var object $query
+   * @var object $posts 
    * @return void
    */
   public function index(Request $request)
@@ -41,6 +44,8 @@ class PostController extends Controller
     
     $posts = $query->orderBy('created_at', 'desc')
       ->paginate(10);
+    
+    // dd(gettype($keyword));
     return view('post.index', [
       'posts' => $posts,
       'keyword' => $keyword,
