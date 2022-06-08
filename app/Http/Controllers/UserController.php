@@ -12,3 +12,4 @@ class UserController extends Controller
     return redirect()->route('post.index');
   }
 }
+

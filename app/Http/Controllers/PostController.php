@@ -52,7 +52,7 @@ class PostController extends Controller
     ]);
 
     //カテゴリー
-    if($request->category_id == ""){
+    if($request->category_id === ""){
       $request->category_id = 1;
     }
   if(isset($request->newCategory_name)){
@@ -115,7 +115,7 @@ class PostController extends Controller
     ]);
 
     //カテゴリー
-    if($request->category_id == ""){
+    if($request->category_id === ""){
       $request->category_id = 1;
     }
     if(isset($request->newCategory_name)){
