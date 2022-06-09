@@ -25,27 +25,25 @@ class PostController extends Controller
    * @param Request $request
    * 
    * @var string $keyword 「検索」で入力された値
-   * @var object $query
-   * @var object $posts 
-   * @return void
+   * @var object $query $keywordに一致する投稿データが入る
+   * @var object $posts 最新の日付順に整列させたデータが入る
+   * @return array 投稿データ キーワード
    */
   public function index(Request $request)
   {
     //キーワード受け取り
     $keyword = $request->input('keyword');
 
-    //クエリ生成
-    $query = Post::query();
-
     //もしキーワードがあったら
     if (isset($keyword)) {
-      $query->where('title', 'like', '%' . $keyword . '%');
+      $query = Post::where('title', 'like', '%' . $keyword . '%');
+    }else{
+      $query = Post::query();
     }
     
     $posts = $query->orderBy('created_at', 'desc')
       ->paginate(10);
     
-    // dd(gettype($keyword));
     return view('post.index', [
       'posts' => $posts,
       'keyword' => $keyword,
@@ -53,20 +51,29 @@ class PostController extends Controller
   }
 
   /**
-   * Undocumented function
+   * 新規投稿の表示
    *
-   * @return void
+   * @var object $categories カテゴリーテーブルの全データ
+   * @return array $categories カテゴリーテーブルの全データ
    */
   public function create()
   {
     $categories = Category::all();
-    return view('post.create', compact('categories'));
+    return view('post.create', [
+      'categories' => $categories,
+    ]);
   }
 
   /**
-   * Undocumented function
+   * 新規投稿からのpostデータをデータベースに登録
    *
    * @param Request $request
+   * 
+   * @var array $inputs postデータにバリデーションをかけて代入
+   * @var string $newCategory_name 新しく追加するカテゴリー名 
+   * @var object $newCategory 新しく追加したカテゴリーのデータ
+   * @var string $original 画像ファイルの元々のファイル名
+   * @var string $name 元々のファイル名に年月日時分秒を追加したファイル名
    * @return void
    */
   public function store(Request $request)
@@ -102,12 +109,23 @@ class PostController extends Controller
     return back()->with('message', '新規投稿を作成しました');
   }
 
+  /**
+   * 投稿記事の個別ページ
+   *
+   * @param Post $post 一覧画面で選択した投稿のデータ
+   * 
+   * @var object $category_posts 同じカテゴリーに属する投稿データ
+   * @var object $markdown
+   * 
+   * @return void
+   */  
   public function show(Post $post)
   {
     $category_posts = Post::where('category_id', $post->category->id)
       ->limit(2)
       ->get();
     $markdown = Markdown::parse($post->body);
+
     return view('post.show', [
       'post' => $post,
       'category_posts' => $category_posts,
@@ -116,9 +134,11 @@ class PostController extends Controller
   }
 
   /**
-   * Undocumented function
+   * 投稿編集ページ
    *
-   * @param Post $post
+   * @param Post $post 一覧画面で選択した投稿データ
+   * 
+   * @var object $categories カテゴリーテーブルの全データ
    * @return void
    */
   public function edit(Post $post)
@@ -126,11 +146,19 @@ class PostController extends Controller
     $categories = Category::all();
     return view('post.edit', compact('post', 'categories'));
   }
+
   /**
-   * Undocumented function
+   * 
    *
    * @param Request $request
    * @param Post $post
+   * 
+   * @var array $inputs postデータにバリデーションをかけて代入
+   * @var string $newCategory_name 新しく追加するカテゴリー名 
+   * @var object $newCategory 新しく追加したカテゴリーのデータ
+   * @var string $original 画像ファイルの元々のファイル名
+   * @var string $name 元々のファイル名に年月日時分秒を追加したファイル名
+   *
    * @return void
    */
   public function update(Request $request, Post $post)
@@ -169,6 +197,15 @@ class PostController extends Controller
     return back()->with('message', '投稿を更新しました');
   }
 
+  /**
+   * 投稿削除
+   *
+   * @param Request $request
+   * @param Post $post
+   * 
+   * 
+   * @return void
+   */
   public function delete(Request $request, Post $post)
   {
     if ($post->eyeCatchImage !== 'noImage.png') {
@@ -178,14 +215,32 @@ class PostController extends Controller
     return redirect()->route('post.index')->with('message', '一つの投稿を削除しました');
   }
 
+  /**
+   * カテゴリー一覧ページ
+   *
+   * @param Category $category ルートパラメータから取得
+   * 
+   * @var object $posts カテゴリーに紐づく投稿データ
+   * @var object $categories 全カテゴリーのデータ
+   * @return void
+   */
   public function categories(Category $category)
   {
     $posts = $category->posts()->get();
     $categories = Category::all();
-    return view('post.categories', compact('posts', 'categories', 'category'));
-    //$categoryはルートパラメータで渡してます。
+    return view('post.categories', [
+      'posts' => $posts,
+      'categories' => $categories
+    ]);
   }
 
+  /**
+   * 全カテゴリーデータを返すメソッド
+   * 
+   * bladeの@injectで使用する目的
+   *
+   * @return object $categories
+   */
   public function getCategories()
   {
     return $categories = Category::all();
