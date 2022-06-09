@@ -105,6 +105,16 @@
     & > br{
       display: none;
     }
+    & > blockquote{
+      padding: 0em 1.5em;
+      margin: 2rem 2rem;
+      background-color: #fffdf4;
+      border: dashed 2px yellow;
+      font-size: 1.6rem;
+      line-height: 22px;
+      margin-inline-start: 37px;
+      margin-inline-end: 40px;
+    }
   }
 }
 

@@ -37,10 +37,16 @@
         <div class="Related__blogWrapper">
           @foreach($category_posts as $category_post)
           <a href="{{route('post.show',$category_post)}}" class="BlogCard">
-            <span class="BlogCard__category">{{ $category_post->category->name }}</span>
-            <div class="BlogCard__image"><img src="{{asset('storage/eyeCatchImage/'.$category_post->eyeCatchImage)}}"
-                alt="eyeCatchImage"></div>
-            <h3 class="BlogCard__title">{{Str::limit($category_post->title,20,'...')}}</h3>
+            <span class="BlogCard__category">
+              {{ $category_post->category->name }}
+            </span>
+            <div class="BlogCard__image">
+              <img src="{{asset('storage/eyeCatchImage/'.$category_post->eyeCatchImage)}}"
+                alt="eyeCatchImage">
+            </div>
+            <h3 class="BlogCard__title">
+              {{Str::limit($category_post->title,20,'...')}}
+            </h3>
           </a>
           @endforeach
         </div>
