@@ -121,7 +121,8 @@ class PostController extends Controller
    */  
   public function show(Post $post)
   {
-    $category_posts = Post::where('category_id', $post->category->id)
+    $category_posts = Post::where('id','!=',$post->id)
+      ->where('category_id', $post->category->id)
       ->limit(2)
       ->get();
     $markdown = Markdown::parse($post->body);
