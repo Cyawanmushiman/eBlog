@@ -1,7 +1,7 @@
 .home{
   width: 95%;
   max-width: 700px;
-  margin: 8.2rem auto 6rem;
+  margin: 11rem auto 6rem;
 
   .home__title{
     @extend %pageTitle;
@@ -9,7 +9,6 @@
   
     &--japanese{
       @extend %pageTitle--japanese;
-      width: 7rem;
       margin-bottom: 3rem;
     }
   }
@@ -21,83 +20,8 @@
   flex-wrap: wrap;
   width: 86%;
   margin: 0 auto;
-
-  .BlogCard{
-    width: 44.5%;
-    margin-bottom: 2.5rem;
-    transition: 0.3s all;
-    &__image{
-      height: auto;
-      margin-bottom: 1rem;
-      &>img{
-        height: 96px;
-        object-fit: cover;
-      }
-    }
-    &__title{
-      @extend %fontPostText;
-      font-size: 1.4rem;
-    }
-
-    &:hover{
-      transform: translateY(-3%);
-    }
-  }
 }
 
-.profile{
-  .profile__title{
-    @extend %pageTitle;
-    margin-bottom: 1rem;
-  
-    &--japanese{
-      @extend %pageTitle--japanese;
-      width: 10rem;
-      margin-bottom: 1rem;
-    }
-  }
-
-  .profile__avatar{
-    width: 132px;
-    height: 132px;
-    margin: 0 auto 1rem;
-    border-radius: 50%;
-    border: 1px solid #c1c1c1;
-    overflow: hidden;
-    position: relative;
-    &>img{
-      object-fit: cover;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-    }
-  }
-
-  .profile__text{
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .profile__name{
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
-  .profile__body{
-    text-align: left;
-    font-size: 1.4rem;
-  }
-  .profile__contactLink,.profile__aboutMe{
-    display: grid;
-    place-items: center;
-    width: 109px;
-    height: 36px;
-    background-color: #A4AFCA;
-    border-radius: 4px;
-    color: white;
-    margin: 0 auto 1rem;
-  }
-}
 /*----------------------------------------
       タブレット向け
 ----------------------------------------*/

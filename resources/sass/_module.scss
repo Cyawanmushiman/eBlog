@@ -36,27 +36,23 @@ img{
 %table{
   border-collapse: separate;
 }
-%postionCenter{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-}
 .br-sp{
   display: none;
+}
+
+.titleWrapper{
+  text-align: center;
 }
 %pageTitle{
   font-size: 2rem;
   text-align: center;
-
 }
 %pageTitle--japanese{
   font-size: 1.6rem;
-  text-align: center;
+  display: inline-block;
   position: relative;
   margin: 0 auto;
   z-index: -1;
-
   &::before,&::after{
     content: '';
     display: inline-block;
@@ -105,6 +101,48 @@ img{
   }
 }
 
+
+.BlogCard{
+  width: 44.5%;
+  margin-bottom: 2.5rem;
+  transition: 0.3s all;
+  position: relative;
+
+  &__category{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 12px;
+    background-color: navy;
+    color: white;
+    padding: 1px 5px;
+  }
+  &__image{
+    height: auto;
+    margin-bottom: 1rem;
+    &>img{
+      height: 96px;
+      object-fit: cover;
+    }
+  }
+  &__title{
+    @extend %fontPostText;
+    font-size: 1.4rem;
+  }
+
+  &:hover{
+    transform: translateY(-3%);
+  }
+}
+
+.breadcrumb {
+  padding: 0.4rem 1rem;
+  font-size: 14px;
+  position: fixed;
+  top: 8%;
+  width: 100%;
+  z-index: 9;
+}
 
 /*----------------------------------------
       タブレット向け

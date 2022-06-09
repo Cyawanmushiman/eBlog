@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" />
+  {{-- prism.css --}}
+  <link href="{{asset('css/prism.css')}}" rel="stylesheet" type="text/css"/>
   <!-- CSSの読み込み -->
   <link href="{{asset('css/app.css')}}" rel="stylesheet" />
   <!-- ファビこん -->
@@ -40,11 +42,14 @@
             <ul class="menu">
               <li class="menu-item {{url()->current()==route('post.index') ? 'active' : ''}}"><a
                   href="{{route('post.index')}}">Home</a></li>
-              <li class="menu-item {{url()->current()==route('post.create') ? 'active' : ''}}"><a
-                  href="{{route('post.create')}}">New Post</a></li>
               <li class="menu-item {{url()->current()==route('contact.create') ? 'active' : ''}}"><a
                   href="{{route('contact.create')}}">Contact</a></li>
-              <li class="menu-item"><a href="">About</a></li>
+              <li class="menu-item {{url()->current() == route('about.index') ? 'active' : ''}}"><a
+                  href="{{route('about.index')}}">About</a></li>
+              @can('admin')
+              <li class="menu-item {{url()->current()==route('post.create') ? 'active' : ''}}"><a
+                  href="{{route('post.create')}}">New Post</a></li>
+              @endcan
             </ul>
           </div>
         </nav>
@@ -66,7 +71,7 @@
       <div class="modal__bg js_modal_close"></div>
       <div class="modal__content">
         <form action="{{route('post.index')}}" method="get">
-          <input class="searchInput" type="text" name="keyword" value="{{$keyword ?? ''}}" placeholder="記事検索">
+          <input class="searchInput" type="search" name="keyword" value="{{$keyword ?? ''}}" placeholder="記事検索">
           <input type="submit" value="検索" class="searchSubmit">
         </form>
         <a href="" class="js_modal_close">閉じる</a>
@@ -111,6 +116,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
   </script>
+  {{-- prism.js --}}
+  <script src="{{asset('js/prism.js')}}"></script>
   <script src="{{asset('js/script.js')}}"></script>
   <script>
     let winScrollTop;

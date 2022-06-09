@@ -6,8 +6,9 @@
 
 @import "main/post/home";
 @import "main/component";
+@import "main/sidebar";
 @import "main/post/create";
 @import "main/post/show";
 @import "main/contact/create";
-@import "main/contact/check";
-
+@import "main/about/index";
+@import "auth/login";

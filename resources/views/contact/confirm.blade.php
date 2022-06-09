@@ -1,8 +1,11 @@
 @extends('layouts.component')
 @section('content')
+{{Breadcrumbs::render('confirm')}}
 <div class="contact">
-  <h1 class="contact__title">Check</h1>
-  <h2 class="contact__title--japanese">内容確認</h2>
+  <div class="titleWrapper">
+    <h1 class="contact__title">Check</h1>
+    <h2 class="contact__title--japanese">内容確認</h2>
+  </div>
 
   <form class="contact__form" action="{{route('contact.send')}}" method="post">
     @csrf

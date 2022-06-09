@@ -17,7 +17,7 @@ body {
   font-size: 1.6rem;
 }
 
-.single__text, .single__title, .single .singleEdit, .single .singleDelete, .home__blogWrapper .BlogCard__title {
+.selfAbout .selfAbout__body, .single .single__texts, .single__title, .single .singleEdit, .single .singleDelete, .categories__menu .categories__menuItem > a, .BlogCard__title {
   font-family: "ABeeZee";
 }
 
@@ -45,19 +45,23 @@ img {
   display: none;
 }
 
-.contact .contact__title, .create .create__title, .profile .profile__title, .home .home__title {
+.titleWrapper {
+  text-align: center;
+}
+
+.selfAbout .selfAbout__title, .about .about__title, .contact .contact__title, .Related .Related__title, .create .create__title, .categories .categories__title, .profile .profile__title, .home .home__title {
   font-size: 2rem;
   text-align: center;
 }
 
-.contact .contact__title--japanese, .create .create__title--japanese, .profile .profile__title--japanese, .home .home__title--japanese {
+.selfAbout .selfAbout__title--japanese, .about .about__title--japanese, .contact .contact__title--japanese, .Related .Related__title--japanese, .create .create__title--japanese, .categories .categories__title--japanese, .profile .profile__title--japanese, .home .home__title--japanese {
   font-size: 1.6rem;
-  text-align: center;
+  display: inline-block;
   position: relative;
   margin: 0 auto;
   z-index: -1;
 }
-.contact .contact__title--japanese::before, .create .create__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before, .contact .contact__title--japanese::after, .create .create__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
+.selfAbout .selfAbout__title--japanese::before, .about .about__title--japanese::before, .contact .contact__title--japanese::before, .Related .Related__title--japanese::before, .create .create__title--japanese::before, .categories .categories__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before, .selfAbout .selfAbout__title--japanese::after, .about .about__title--japanese::after, .contact .contact__title--japanese::after, .Related .Related__title--japanese::after, .create .create__title--japanese::after, .categories .categories__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
   content: "";
   display: inline-block;
   width: 22px;
@@ -67,10 +71,10 @@ img {
   top: 50%;
   background-color: #333;
 }
-.contact .contact__title--japanese::before, .create .create__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before {
+.selfAbout .selfAbout__title--japanese::before, .about .about__title--japanese::before, .contact .contact__title--japanese::before, .Related .Related__title--japanese::before, .create .create__title--japanese::before, .categories .categories__title--japanese::before, .profile .profile__title--japanese::before, .home .home__title--japanese::before {
   left: -25px;
 }
-.contact .contact__title--japanese::after, .create .create__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
+.selfAbout .selfAbout__title--japanese::after, .about .about__title--japanese::after, .contact .contact__title--japanese::after, .Related .Related__title--japanese::after, .create .create__title--japanese::after, .categories .categories__title--japanese::after, .profile .profile__title--japanese::after, .home .home__title--japanese::after {
   right: -25px;
 }
 
@@ -102,6 +106,46 @@ img {
   background-color: #333;
 }
 
+.BlogCard {
+  width: 44.5%;
+  margin-bottom: 2.5rem;
+  transition: 0.3s all;
+  position: relative;
+}
+.BlogCard__category {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 12px;
+  background-color: navy;
+  color: white;
+  padding: 1px 5px;
+}
+.BlogCard__image {
+  height: auto;
+  margin-bottom: 1rem;
+}
+.BlogCard__image > img {
+  height: 96px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.BlogCard__title {
+  font-size: 1.4rem;
+}
+.BlogCard:hover {
+  transform: translateY(-3%);
+}
+
+.breadcrumb {
+  padding: 0.4rem 1rem;
+  font-size: 14px;
+  position: fixed;
+  top: 8%;
+  width: 100%;
+  z-index: 9;
+}
+
 /*----------------------------------------
       タブレット向け
 ----------------------------------------*/
@@ -116,13 +160,12 @@ img {
 .home {
   width: 95%;
   max-width: 700px;
-  margin: 8.2rem auto 6rem;
+  margin: 11rem auto 6rem;
 }
 .home .home__title {
   margin-bottom: 0.7rem;
 }
 .home .home__title--japanese {
-  width: 7rem;
   margin-bottom: 3rem;
 }
 
@@ -132,74 +175,6 @@ img {
   flex-wrap: wrap;
   width: 86%;
   margin: 0 auto;
-}
-.home__blogWrapper .BlogCard {
-  width: 44.5%;
-  margin-bottom: 2.5rem;
-  transition: 0.3s all;
-}
-.home__blogWrapper .BlogCard__image {
-  height: auto;
-  margin-bottom: 1rem;
-}
-.home__blogWrapper .BlogCard__image > img {
-  height: 96px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.home__blogWrapper .BlogCard__title {
-  font-size: 1.4rem;
-}
-.home__blogWrapper .BlogCard:hover {
-  transform: translateY(-3%);
-}
-
-.profile .profile__title {
-  margin-bottom: 1rem;
-}
-.profile .profile__title--japanese {
-  width: 10rem;
-  margin-bottom: 1rem;
-}
-.profile .profile__avatar {
-  width: 132px;
-  height: 132px;
-  margin: 0 auto 1rem;
-  border-radius: 50%;
-  border: 1px solid #c1c1c1;
-  overflow: hidden;
-  position: relative;
-}
-.profile .profile__avatar > img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.profile .profile__text {
-  width: 80%;
-  margin: 0 auto;
-  text-align: center;
-}
-.profile .profile__name {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-.profile .profile__body {
-  text-align: left;
-  font-size: 1.4rem;
-}
-.profile .profile__contactLink, .profile .profile__aboutMe {
-  display: grid;
-  place-items: center;
-  width: 109px;
-  height: 36px;
-  background-color: #A4AFCA;
-  border-radius: 4px;
-  color: white;
-  margin: 0 auto 1rem;
 }
 
 /*----------------------------------------
@@ -215,6 +190,7 @@ img {
   position: fixed;
   width: 100%;
   background-color: #f2faff;
+  z-index: 10;
 }
 .header__title {
   font-size: 3rem;
@@ -257,12 +233,13 @@ img {
 
 .modal__content {
   background: white;
-  left: 18%;
+  left: 50%;
   padding: 20px;
   position: absolute;
   top: 19%;
   transform: translate(-50%, -50%);
-  width: 36%;
+  width: 100%;
+  max-width: 300px;
 }
 
 .js_modal_close {
@@ -423,7 +400,7 @@ nav
 .sessionMessage {
   font-size: 12px;
   position: absolute;
-  top: 11%;
+  top: 16%;
   left: 4%;
   color: limegreen;
 }
@@ -431,7 +408,7 @@ nav
 .errorMessage {
   font-size: 12px;
   position: absolute;
-  top: 11%;
+  top: 13%;
   left: 4%;
   color: tomato;
 }
@@ -460,10 +437,102 @@ nav
 /*----------------------------------------
       pc向け
 ----------------------------------------*/
+.profile {
+  margin-bottom: 5rem;
+}
+.profile .profile__title {
+  margin-bottom: 1rem;
+}
+.profile .profile__title--japanese {
+  margin-bottom: 1rem;
+}
+.profile .profile__avatar {
+  width: 132px;
+  height: 132px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  border: 1px solid #c1c1c1;
+  overflow: hidden;
+  position: relative;
+}
+.profile .profile__avatar > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.profile .profile__text {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+.profile .profile__name {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.profile .profile__body {
+  text-align: left;
+  font-size: 1.4rem;
+}
+.profile .profile__contactLink, .profile .profile__aboutMe {
+  display: grid;
+  place-items: center;
+  width: 109px;
+  height: 36px;
+  background-color: #A4AFCA;
+  border-radius: 4px;
+  color: white;
+  margin: 0 auto 1rem;
+}
+
+.categories {
+  width: 70%;
+  margin: 0 auto;
+}
+.categories .categories__title {
+  margin-bottom: 0.7rem;
+}
+.categories .categories__title--japanese {
+  margin-bottom: 1rem;
+}
+.categories__menu .categories__menuItem {
+  position: relative;
+}
+.categories__menu .categories__menuItem::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #c1c1c1;
+  position: absolute;
+  top: 56%;
+  left: -17px;
+  transform: translateY(-50%);
+}
+.categories__menu .categories__menuItem > a {
+  font-size: 1.4rem;
+}
+
+/*----------------------------------------
+      768px以上
+----------------------------------------*/
+@media (min-width: 768px) {
+  .sidebar {
+    margin-top: 11rem;
+  }
+}
 .create {
   width: 95%;
   max-width: 700px;
-  margin: 7.7rem auto 0;
+  margin: 11rem auto 10rem;
+}
+.create .create__title {
+  margin-bottom: 0.7rem;
+}
+.create .create__title--japanese {
+  margin-bottom: 3rem;
 }
 .create .create__image {
   width: 50%;
@@ -483,7 +552,7 @@ nav
   margin-bottom: 0.3rem;
   display: block;
 }
-.create__form input:not(:last-of-type), .create__form textarea {
+.create__form input:not(:last-of-type), .create__form textarea, .create__form select {
   background-color: #e7e7e7;
   padding: 0.1rem;
   margin-bottom: 1.6rem;
@@ -506,7 +575,7 @@ nav
 .single {
   width: 83%;
   max-width: 700px;
-  margin: 7.7rem auto 0;
+  margin: 11rem auto 8rem;
 }
 .single__touch {
   text-align: right;
@@ -526,7 +595,15 @@ nav
   line-height: 1.2777777778;
   letter-spacing: -10%;
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+.single__category {
+  display: inline-block;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  background-color: navy;
+  color: white;
+  padding: 1px 5px;
 }
 .single__image {
   height: auto;
@@ -536,20 +613,90 @@ nav
   -o-object-fit: cover;
      object-fit: cover;
 }
-.single__text {
-  font-size: 1.6rem;
-  line-height: 1.6;
-  letter-spacing: 2px;
+.single .single__texts > h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  padding: 2rem 2rem;
+  border-left: solid 5px navy;
+  background-color: #ececff;
+  border-radius: 5px;
+}
+.single .single__texts > h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  border-left: solid 5px navy;
+  border-radius: 5px;
+}
+.single .single__texts > h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1rem;
+  border-bottom: solid 5px #ececff;
+}
+.single .single__texts strong {
+  background-color: #ffff72;
+  padding: 3px;
+}
+.single .single__texts pre {
+  padding: 10px;
+  background-color: #e9e9e9;
+}
+.single .single__texts p > code {
+  background-color: #ececff;
+  color: black;
+}
+.single .single__texts ul > li {
+  position: relative;
+  padding-left: 20px;
+}
+.single .single__texts ul > li::before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: yellow;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+.single .single__texts ul > br {
+  display: none;
+}
+.single .single__texts > br {
+  display: none;
+}
+
+.Related {
+  margin-bottom: 5rem;
+}
+.Related .Related__title {
+  margin-bottom: 0.7rem;
+}
+.Related .Related__title--japanese {
+  margin-bottom: 3rem;
+}
+
+.Related__blogWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 86%;
+  margin: 0 auto;
 }
 
 .contact {
   width: 95%;
   max-width: 700px;
-  margin: 7.7rem auto 0;
+  margin: 11rem auto 10rem;
 }
 .contact .contact__title--japanese {
   margin-bottom: 3rem;
-  width: 10.5rem;
 }
 .contact .contact__image {
   width: 50%;
@@ -587,4 +734,101 @@ nav
   display: grid;
   place-items: center;
   margin: 2rem auto 0;
+}
+
+.about {
+  width: 95%;
+  max-width: 700px;
+  margin: 11rem auto 6rem;
+}
+.about .about__title {
+  margin-bottom: 0.7rem;
+}
+.about .about__title--japanese {
+  margin-bottom: 3rem;
+}
+
+.about__blogWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 86%;
+  margin: 0 auto;
+}
+
+.selfAbout {
+  width: 95%;
+  max-width: 700px;
+  margin: 0rem auto 6rem;
+}
+.selfAbout .selfAbout__title {
+  margin-bottom: 0.7rem;
+}
+.selfAbout .selfAbout__title--japanese {
+  margin-bottom: 3rem;
+}
+.selfAbout .selfAbout__body > h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  padding: 2rem 2rem;
+  border-left: solid 5px navy;
+  background-color: #ececff;
+  border-radius: 5px;
+}
+.selfAbout .selfAbout__body > h1:not(:first-of-type) {
+  margin-top: 5rem;
+}
+.selfAbout .selfAbout__body > h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  border-left: solid 5px navy;
+  border-radius: 5px;
+}
+.selfAbout .selfAbout__body > h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1rem;
+  border-bottom: solid 5px #ececff;
+}
+.selfAbout .selfAbout__body strong {
+  background-color: #ffff72;
+  padding: 3px;
+}
+.selfAbout .selfAbout__body pre {
+  padding: 10px;
+  background-color: #e9e9e9;
+}
+.selfAbout .selfAbout__body p > code {
+  background-color: #ececff;
+  color: black;
+}
+.selfAbout .selfAbout__body ul > li {
+  position: relative;
+  padding-left: 20px;
+}
+.selfAbout .selfAbout__body ul > li::before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: yellow;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+/*----------------------------------------
+      タブレット向け
+----------------------------------------*/
+/*----------------------------------------
+      pc向け
+----------------------------------------*/
+.container__login {
+  margin-top: 11rem;
 }
