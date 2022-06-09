@@ -21,11 +21,12 @@
   
   &__title{
     @extend %fontPostText;
-    font-size: 2rem;
+    font-size: 3rem;
     line-height: calc(23/18);
     letter-spacing: -10%;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    font-weight: bold;
   }
   
   &__category{
