@@ -222,16 +222,15 @@ class PostController extends Controller
    * @param Category $category ルートパラメータから取得
    * 
    * @var object $posts カテゴリーに紐づく投稿データ
-   * @var object $categories 全カテゴリーのデータ
+   * @var object $category URLパラメータで渡されたカテゴリーのレコード
    * @return void
    */
   public function categories(Category $category)
   {
     $posts = $category->posts()->get();
-    $categories = Category::all();
     return view('post.categories', [
       'posts' => $posts,
-      'categories' => $categories
+      'category' => $category,
     ]);
   }
 
