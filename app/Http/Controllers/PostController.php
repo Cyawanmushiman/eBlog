@@ -82,7 +82,7 @@ class PostController extends Controller
       'title' => 'required|max:255',
       'body' => 'required|max:5000',
       'eyeCatchImage' => 'image',
-      'newCategory_name' => ['name' => 'unique:Categories,name'],
+      'newCategory_name' => ['name' => 'unique:categories,name'],
     ]);
 
     //カテゴリー
@@ -168,7 +168,7 @@ class PostController extends Controller
       'title' => 'required|max:255',
       'body' => 'required|max:5000',
       'eyeCatchImage' => 'image',
-      'newCategory_name' => ['name' => 'unique:Categories,name'],
+      'newCategory_name' => ['name' => 'unique:categories,name'],
     ]);
 
     //カテゴリー
