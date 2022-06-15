@@ -102,7 +102,7 @@ class PostController extends Controller
         ->getClientOriginalName();
       $name = date('Ymd_His') . '_' . $original;
       $request->file('eyeCatchImage')
-        ->move('storage/eyeCatchImage/', $name);
+        ->move('storage/public/eyeCatchImage/', $name);
       $inputs['eyeCatchImage'] = $name;
     }
     Post::create($inputs);
@@ -189,7 +189,7 @@ class PostController extends Controller
       }
       $original = $request->file('eyeCatchImage')->getClientOriginalName();
       $name = date('Ymd_His') . '_' . $original;
-      $request->file('eyeCatchImage')->move('storage/eyeCatchImage/', $name);
+      $request->file('eyeCatchImage')->move('storage/public/eyeCatchImage/', $name);
 
       $inputs['eyeCatchImage'] = $name;
     }

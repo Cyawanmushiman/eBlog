@@ -32,7 +32,7 @@
 
 
     <label for="eyeCatchImage">eyeCatchImage</label>
-    <div class="create__image"><img src="{{asset("storage/eyeCatchImage/".$post->eyeCatchImage)}}" alt="eyeCatchImage"></div>
+    <div class="create__image"><img src="{{asset("storage/public/eyeCatchImage/".$post->eyeCatchImage)}}" alt="eyeCatchImage"></div>
     <input type="file" id="eyeCatchImage" name="eyeCatchImage">
 
     <button class="create__btn" type="submit">update!</button>
