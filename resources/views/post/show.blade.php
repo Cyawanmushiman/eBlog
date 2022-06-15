@@ -19,7 +19,7 @@
       
         <h1 class="single__title">{{$post->title}}</h1>
         <p class="single__category">{{$post->category->name}}</p>
-        <div class="single__image"><img src="{{asset('storage/eyeCatchImage/'.$post->eyeCatchImage)}}" alt="eyeCatchImage"></div>
+        <div class="single__image"><img src="{{asset('storage/public/eyeCatchImage/'.$post->eyeCatchImage)}}" alt="eyeCatchImage"></div>
         <div class="single__body">
           <div class="single__texts">
             {!! nl2br($markdown) !!}
@@ -41,7 +41,7 @@
               {{ $category_post->category->name }}
             </span>
             <div class="BlogCard__image">
-              <img src="{{asset('storage/eyeCatchImage/'.$category_post->eyeCatchImage)}}"
+              <img src="{{asset('storage/public/eyeCatchImage/'.$category_post->eyeCatchImage)}}"
                 alt="eyeCatchImage">
             </div>
             <h3 class="BlogCard__title">
