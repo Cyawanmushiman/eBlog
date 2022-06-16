@@ -15,7 +15,7 @@
           <span class="BlogCard__category">{{ $post->category->name }}</span>
           <div class="BlogCard__image"><img src="{{asset('storage/public/eyeCatchImage/'.$post->eyeCatchImage)}}"
               alt="eyeCatchImage"></div>
-          <h3 class="BlogCard__title">{{Str::limit($post->title,20,'...')}}</h3>
+          <h3 class="BlogCard__title">{{Str::limit($post->title,60,'...')}}</h3>
         </a>
         @endforeach
       </div>
