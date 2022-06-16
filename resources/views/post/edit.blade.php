@@ -31,7 +31,7 @@
     <textarea name="body" id="body">{{old('body',$post->body)}}</textarea>
 
 
-    <label for="eyeCatchImage">eyeCatchImage</label>
+    <label for="eyeCatchImage">eyeCatchImage(画像サイズ:1024kBまで)</label>
     <div class="create__image"><img src="{{asset("storage/public/eyeCatchImage/".$post->eyeCatchImage)}}" alt="eyeCatchImage"></div>
     <input type="file" id="eyeCatchImage" name="eyeCatchImage">
 

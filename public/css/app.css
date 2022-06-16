@@ -141,7 +141,7 @@ img {
   padding: 0.4rem 1rem;
   font-size: 14px;
   position: fixed;
-  top: 8%;
+  top: 7%;
   width: 100%;
   z-index: 9;
 }
@@ -617,7 +617,8 @@ nav
 .single .single__texts > h1 {
   font-size: 3rem;
   font-weight: bold;
-  margin-bottom: 2rem;
+  margin-top: 8rem;
+  margin-bottom: 1rem;
   padding: 2rem 2rem;
   border-left: solid 5px navy;
   background-color: #ececff;
@@ -626,7 +627,8 @@ nav
 .single .single__texts > h2 {
   font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 2rem;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
   padding: 1rem 1.5rem;
   border-left: solid 5px navy;
   border-radius: 5px;
@@ -634,7 +636,8 @@ nav
 .single .single__texts > h3 {
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 2rem;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
   padding: 0.5rem 1rem;
   border-bottom: solid 5px #ececff;
 }
@@ -683,6 +686,9 @@ nav
           margin-inline-start: 37px;
   -webkit-margin-end: 40px;
           margin-inline-end: 40px;
+}
+.single .single__texts a {
+  color: #BAA1FF;
 }
 
 .Related {
