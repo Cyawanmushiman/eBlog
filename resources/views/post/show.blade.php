@@ -45,7 +45,7 @@
                 alt="eyeCatchImage">
             </div>
             <h3 class="BlogCard__title">
-              {{Str::limit($category_post->title,20,'...')}}
+              {{Str::limit($category_post->title,60,'...')}}
             </h3>
           </a>
           @endforeach
