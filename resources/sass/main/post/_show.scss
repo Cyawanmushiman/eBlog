@@ -50,7 +50,8 @@
     & > h1{
       font-size: 3rem;
       font-weight: bold;
-      margin-bottom: 2rem;
+      margin-top: 8rem;
+      margin-bottom: 1rem;
       padding: 2rem 2rem;
       border-left: solid 5px navy;
       background-color: #ececff;
@@ -59,7 +60,8 @@
     & > h2{
       font-size: 2.5rem;
       font-weight: bold;
-      margin-bottom: 2rem;
+      margin-top: 5rem;
+      margin-bottom: 1rem;
       padding: 1rem 1.5rem;
       border-left: solid 5px navy;
       border-radius: 5px;
@@ -67,7 +69,8 @@
     & > h3{
       font-size: 2rem;
       font-weight: bold;
-      margin-bottom: 2rem;
+      margin-top: 5rem;
+      margin-bottom: 1rem;
       padding: 0.5rem 1rem;
       border-bottom: solid 5px #ececff;
     }
@@ -115,6 +118,9 @@
       line-height: 22px;
       margin-inline-start: 37px;
       margin-inline-end: 40px;
+    }
+    & a{
+      color: #BAA1FF;
     }
   }
 }
