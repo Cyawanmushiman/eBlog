@@ -13,11 +13,11 @@ html {
 }
 
 body {
-  font-family: "A-OTF Ryumin Pr6N", "メイリオ", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  font-family: "A-OTF Ryumin Pr6N", "ヒラギノ明朝 ProN", "Hiragino Mincho ProN", sans-serif "メイリオ", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
   font-size: 1.6rem;
 }
 
-.selfAbout .selfAbout__body, .single .single__texts, .single__title, .single .singleEdit, .single .singleDelete, .categories__menu .categories__menuItem > a, .BlogCard__title {
+.selfAbout .selfAbout__body, .single .single__texts, .single__title, .single .singleEdit, .single .singleDelete, .categories__menu .categories__menuItem a, .BlogCard__title {
   font-family: "ABeeZee";
 }
 
@@ -141,7 +141,7 @@ img {
   padding: 0.4rem 1rem;
   font-size: 14px;
   position: fixed;
-  top: 7%;
+  top: 58px;
   width: 100%;
   z-index: 9;
 }
@@ -498,6 +498,8 @@ nav
   margin-bottom: 1rem;
 }
 .categories__menu .categories__menuItem {
+  display: flex;
+  align-items: center;
   position: relative;
 }
 .categories__menu .categories__menuItem::before {
@@ -511,8 +513,12 @@ nav
   left: -17px;
   transform: translateY(-50%);
 }
-.categories__menu .categories__menuItem > a {
+.categories__menu .categories__menuItem a {
   font-size: 1.4rem;
+  margin-right: 1rem;
+}
+.categories .categoryDelete {
+  color: tomato;
 }
 
 /*----------------------------------------

@@ -28,12 +28,12 @@ Route::middleware(['can:admin'])->group(function(){
   Route::get('post/{post}/edit','PostController@edit')->name('post.edit');
   Route::put('post/update/{post}','PostController@update')->name('post.update');
   Route::delete('post/delete/{post}','PostController@delete')->name('post.delete');
+  Route::delete('category/delete/{category}','CategoryController@delete')->name('category.delete');
 });
 
 Route::get('post/index','PostController@index')->name('post.index');
 Route::get('post/show/{post}','PostController@show')->name('post.show');
-Route::get('post/categories/{category}','PostController@categories')->name('post.categories');
-
+Route::get('category/{category}','CategoryController@index')->name('category.index');
 //コメント
 // Route::post('/post/comment/store','CommentController@store')->name('post.store');
 

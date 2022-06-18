@@ -1,4 +1,4 @@
-@inject('categories', 'App\Http\Controllers\PostController')
+@inject('categories', 'App\Http\Controllers\CategoryController')
 <div class="sidebar col-md-4">
   <section class="profile">
     <div class="titleWrapper">
@@ -27,7 +27,17 @@
   
     <ul class="categories__menu">
       @foreach($categories->getCategories() as $category)
-      <li class="categories__menuItem"><a href="{{route('post.categories',$category)}}">{{$category->name}}</a></li>
+      <li class="categories__menuItem">
+        <a href="{{route('category.index',$category)}}">{{$category->name}}</a>
+        @can('admin')
+        <form action="{{route('category.delete',$category)}}" method="post">
+          @csrf
+          @method('delete')
+          <button type="submit" class="categoryDelete" onclick="return confirm('このカテゴリーを削除してもよろしいですか？（このカテゴリーに紐ずく投稿は「その他」にカテゴライズされます。）')">delete</button>
+        </form>
+        @endcan
+
+      </li>
       @endforeach
     </ul>
   </section>

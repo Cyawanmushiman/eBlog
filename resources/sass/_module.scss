@@ -11,7 +11,7 @@ html {
   box-sizing: border-box;
 }
 body{
-  font-family: "A-OTF Ryumin Pr6N", "メイリオ", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  font-family: "A-OTF Ryumin Pr6N", 'ヒラギノ明朝 ProN','Hiragino Mincho ProN',sans-serif"メイリオ", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
   font-size: 1.6rem;//bodyを1.6emと指定する事で、その他は何も指定しなければ、16pxとなるとための設定
 }
 %fontPostText{
@@ -139,7 +139,7 @@ img{
   padding: 0.4rem 1rem;
   font-size: 14px;
   position: fixed;
-  top: 7%;
+  top: 58px;
   width: 100%;
   z-index: 9;
 }

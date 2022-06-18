@@ -215,34 +215,4 @@ class PostController extends Controller
     $post->delete();
     return redirect()->route('post.index')->with('message', '一つの投稿を削除しました');
   }
-
-  /**
-   * カテゴリー一覧ページ
-   *
-   * @param Category $category ルートパラメータから取得
-   * 
-   * @var object $posts カテゴリーに紐づく投稿データ
-   * @var object $category URLパラメータで渡されたカテゴリーのレコード
-   * @return void
-   */
-  public function categories(Category $category)
-  {
-    $posts = $category->posts()->get();
-    return view('post.categories', [
-      'posts' => $posts,
-      'category' => $category,
-    ]);
-  }
-
-  /**
-   * 全カテゴリーデータを返すメソッド
-   * 
-   * bladeの@injectで使用する目的
-   *
-   * @return object $categories
-   */
-  public function getCategories()
-  {
-    return $categories = Category::all();
-  }
 }
