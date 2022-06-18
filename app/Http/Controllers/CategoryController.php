@@ -50,7 +50,6 @@ class CategoryController extends Controller
    */
   public function delete(Category $category){
     $posts = $category->posts()->get();
-    dd(gettype($posts));
     foreach($posts as $post){
       $post->update(['category_id' => 1]);
     }
