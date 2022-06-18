@@ -30,7 +30,7 @@
             alt="search-Icon" /></a>
         <!--data-target属性を追加する。この値をモーダルウィンドウのID属性とリンクさせることで、どのモーダルウィンドウを開くかわかるようにする。-->
       </div>
-      <a href="index.html" class="header__title">
+      <a href="{{route('post.index')}}" class="header__title">
         eBlog
       </a>
 

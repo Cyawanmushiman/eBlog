@@ -25,7 +25,7 @@ Breadcrumbs::for('newPost',function($trail) {
 //Home > Category
 Breadcrumbs::for('category',function ($trail,$category) {
   $trail->parent('home');
-  $trail->push($category->name, route('post.categories',['category'=>$category]));
+  $trail->push($category->name, route('category.index',['category'=>$category]));
 });
 
 //Home > show

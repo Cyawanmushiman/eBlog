@@ -68,6 +68,8 @@
 
   &__menu{
     .categories__menuItem{
+      display: flex;
+      align-items: center;
       position: relative;
       &::before{
         content: '';
@@ -80,13 +82,20 @@
         left: -17px;
         transform: translateY(-50%);
       }
-      &>a{
+      & a{
         @extend %fontPostText;
         font-size: 1.4rem;
+        margin-right: 1rem;
       }
     }
   }
+  .categoryDelete{
+    color: tomato;
+  }
 }
+
+
+
 
 /*----------------------------------------
       768px以上
