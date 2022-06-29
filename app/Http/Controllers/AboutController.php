@@ -8,12 +8,19 @@ use App\Models\Post;
 
 class AboutController extends Controller
 {
-  public function index(){
-    $posts = Post::whereHas('category',function($q) {
-      $q->where('name','実績');
-    })->get();
-    return view('about.index',[
-      'posts' => $posts,
-    ]);
-  }
+    /**
+     * 自己紹介ページ
+     *
+     * @var object $posts categoriesテーブルの「nameカラムの値が[実績]」のデータに紐ずく投稿を取得する
+     *
+     * @return void
+     */
+    public function index()
+    {
+        return view('about.index', [
+            'posts' => Post::whereHas('category', function ($q) {
+                $q->where('name', '実績');
+            })->get(),
+        ]);
+    }
 }

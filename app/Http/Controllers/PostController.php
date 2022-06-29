@@ -62,6 +62,7 @@ class PostController extends Controller
      * @var array $inputs postデータにバリデーションをかけて代入
      * @var string $newCategory_name 新しく追加するカテゴリー名
      * @var object $newCategory 新しく追加したカテゴリーのデータ
+     * @var object $eyeCatchImage アイキャッチ画像
      * @var string $original 画像ファイルの元々のファイル名
      * @var string $name 元々のファイル名に年月日時分秒を追加したファイル名
      * @return void
@@ -70,6 +71,7 @@ class PostController extends Controller
     {
         $inputs = $request->all();
         $newCategory_name = $inputs['newCategory_name'];
+        $eyeCatchImage = $inputs['eyeCatchImage'];
 
         //カテゴリー未選択の場合
         if (empty($inputs['category_id'])) {
@@ -85,13 +87,12 @@ class PostController extends Controller
             }
 
             //eyeCatchImage
-            if (isset($inputs['eyeCatchImage'])) {
-                $original = $inputs['eyeCatchImage']
+            if (isset($eyeCatchImage)) {
+                $original = $eyeCatchImage
                     ->getClientOriginalName();
                 $name  = date('Ymd_His') . '_' . $original;
-                $inputs['eyeCatchImage']
-                    ->move('storage/public/eyeCatchImage/', $name);
-                $inputs['eyeCatchImage'] = $name;
+                $eyeCatchImage->move('storage/public/eyeCatchImage/', $name);
+                $eyeCatchImage = $name;
             }
 
             Post::create($inputs);
@@ -145,11 +146,12 @@ class PostController extends Controller
     /**
      *投稿内容更新
      * @param PostRequest $request
-     * @param Post $post
+     * @param Post $post 
      *
      * @var array $inputs postデータにバリデーションをかけて代入
      * @var string $newCategory_name 新しく追加するカテゴリー名
      * @var object $newCategory 新しく追加したカテゴリーのデータ
+     * @var object $eyeCatchImage アイキャッチ画像
      * @var string $original 画像ファイルの元々のファイル名
      * @var string $name 元々のファイル名に年月日時分秒を追加したファイル名
      *
@@ -159,6 +161,7 @@ class PostController extends Controller
     {
         $inputs = $request->all();
         $newCategory_name = $inputs['newCategory_name'];
+        $eyeCatchImage = $inputs['eyeCatchImage'];
 
         //カテゴリー
         if ($inputs['category_id'] === "") {
@@ -175,14 +178,14 @@ class PostController extends Controller
             }
 
             //eyeCatchImage
-            if (isset($inputs['eyeCatchImage'])) {
+            if (isset($eyeCatchImage)) {
                 if ($post->eyeCatchImage !== 'noImage.png') {
                     Storage::disk('public')->delete('eyeCatchImage/' . $post->eyeCatchImage);
                 }
-                $original = $inputs['eyeCatchImage']->getClientOriginalName();
+                $original = $eyeCatchImage->getClientOriginalName();
                 $name = date('Ymd_His') . '_' . $original;
-                $inputs['eyeCatchImage']->move('storage/public/eyeCatchImage/', $name);
-                $inputs['eyeCatchImage'] = $name;
+                $eyeCatchImage->move('storage/public/eyeCatchImage/', $name);
+                $eyeCatchImage = $name;
             }
 
             $post->update($inputs);
@@ -198,13 +201,11 @@ class PostController extends Controller
     /**
      * 投稿削除
      *
-     * @param Request $request
      * @param Post $post
-     *
      *
      * @return void
      */
-    public function delete(Request $request, Post $post)
+    public function delete(Post $post)
     {
         if ($post->eyeCatchImage !== 'noImage.png') {
             Storage::disk('public')->delete('eyeCatchImage/' . $post->eyeCatchImage);

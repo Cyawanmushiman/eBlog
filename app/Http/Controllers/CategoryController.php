@@ -13,23 +13,22 @@ class CategoryController extends Controller
    * カテゴリー一覧ページ
    *
    * @param Category $category ルートパラメータから取得
-   * 
+   *
    * @var object $posts カテゴリーに紐づく投稿データ
    * @var object $category URLパラメータで渡されたカテゴリーのレコード
    * @return void
    */
   public function index(Category $category)
   {
-    $posts = $category->posts()->get();
     return view('category.index', [
-      'posts' => $posts,
+      'posts' => $category->posts()->get(),
       'category' => $category,
     ]);
   }
 
   /**
    * 全カテゴリーデータを返すメソッド
-   * 
+   *
    * bladeの@injectで使用する目的
    *
    * @return object $categories
@@ -43,9 +42,9 @@ class CategoryController extends Controller
    * カテゴリー削除（紐づく投稿はその他に分類）
    *
    * @param Category $category sidebarのルートパラメータから取得
-   * 
-   * @var object $posts カテゴリーに紐づく投稿データ
-   * 
+   *
+   * @var object $posts カテゴリーに紐づく投稿データ達
+   *
    * @return void
    */
   public function delete(Category $category){
