@@ -21,7 +21,7 @@
     <p class="contact__text">{{$inputs['email']}}</p>
     <input type="hidden" name="email" value="{{$inputs['email']}}">
 
-    <button name="back" class="contact__btn" type="submit">戻る</button>
+    <button name="back" class="contact__btn" type="submit" value="back">戻る</button>
     <button class="contact__btn" type="submit">送信</button>
   </form>
 </div>
