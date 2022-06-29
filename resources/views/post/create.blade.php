@@ -12,11 +12,11 @@
     <label for="category">category</label>
     <select name="category_id" type="text"  id="category">
         <option value="">選択してください</option>
-      @foreach($categories as $category)
-        <option value="{{$category->id}}">{{$category->name}}</option>
-      @endforeach
+        @foreach($categories as $category)
+        <option value="{{$category->id}}" {{old('category_id') == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+        @endforeach
     </select>
-    <input type="text" id="category" name="newCategory_name" placeholder="新しいカテゴリー">
+    <input type="text" id="category" name="newCategory_name" placeholder="新しいカテゴリー" value="{{ old('newCategory_name') }}">
 
     <label for="title">title</label>
     <input type="text" id="title" name="title" value="{{old('title')}}">
