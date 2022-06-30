@@ -71,7 +71,6 @@ class PostController extends Controller
     {
         $inputs = $request->all();
         $newCategory_name = $inputs['newCategory_name'];
-        $eyeCatchImage = $inputs['eyeCatchImage'];
 
         //カテゴリー未選択の場合
         if (empty($inputs['category_id'])) {
@@ -87,12 +86,12 @@ class PostController extends Controller
             }
 
             //eyeCatchImage
-            if (isset($eyeCatchImage)) {
-                $original = $eyeCatchImage
+            if (isset($inputs['eyeCatchImage'])) {
+                $original = $inputs['eyeCatchImage']
                     ->getClientOriginalName();
                 $name  = date('Ymd_His') . '_' . $original;
-                $eyeCatchImage->move('storage/public/eyeCatchImage/', $name);
-                $eyeCatchImage = $name;
+                $inputs['eyeCatchImage']->move('storage/public/eyeCatchImage/', $name);
+                $inputs['eyeCatchImage'] = $name;
             }
 
             Post::create($inputs);
@@ -146,7 +145,7 @@ class PostController extends Controller
     /**
      *投稿内容更新
      * @param PostRequest $request
-     * @param Post $post 
+     * @param Post $post
      *
      * @var array $inputs postデータにバリデーションをかけて代入
      * @var string $newCategory_name 新しく追加するカテゴリー名
@@ -161,7 +160,6 @@ class PostController extends Controller
     {
         $inputs = $request->all();
         $newCategory_name = $inputs['newCategory_name'];
-        $eyeCatchImage = $inputs['eyeCatchImage'];
 
         //カテゴリー
         if ($inputs['category_id'] === "") {
@@ -178,14 +176,14 @@ class PostController extends Controller
             }
 
             //eyeCatchImage
-            if (isset($eyeCatchImage)) {
+            if (isset($inputs['eyeCatchImage'])) {
                 if ($post->eyeCatchImage !== 'noImage.png') {
                     Storage::disk('public')->delete('eyeCatchImage/' . $post->eyeCatchImage);
                 }
-                $original = $eyeCatchImage->getClientOriginalName();
+                $original = $inputs['eyeCatchImage']->getClientOriginalName();
                 $name = date('Ymd_His') . '_' . $original;
-                $eyeCatchImage->move('storage/public/eyeCatchImage/', $name);
-                $eyeCatchImage = $name;
+                $inputs['eyeCatchImage']->move('storage/public/eyeCatchImage/', $name);
+                $inputs['eyeCatchImage'] = $name;
             }
 
             $post->update($inputs);
