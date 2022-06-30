@@ -8,8 +8,11 @@
         <h1 class="home__title">Posts</h1>
         <h2 class="home__title--japanese">記事一覧</h2>
       </div>
-    
+
       <div class="home__blogWrapper">
+        @if(count($posts) === 0)
+            <p>まだ投稿がありません</p>
+        @endif
         @foreach($posts as $post)
         <a href="{{route('post.show',$post)}}" class="BlogCard">
           <span class="BlogCard__category">{{ $post->category->name }}</span>
@@ -19,7 +22,7 @@
         </a>
         @endforeach
       </div>
-    
+
       {{$posts->appends(['keyword'=>$keyword])->links('vendor.pagination.custom-2')}}
     </main>
     @include('layouts.sidebar')

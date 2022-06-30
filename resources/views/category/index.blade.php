@@ -9,9 +9,9 @@
           <h1 class="home__title">{{$category->name}}</h1>
           <h2 class="home__title--japanese">{{$category->name}}の記事</h2>
         </div>
-      
+
         <div class="home__blogWrapper">
-          @if(count($posts) == 0)
+          @if(count($posts) === 0)
             <p>まだ投稿がありません</p>
           @endif
           @foreach($posts as $post)
