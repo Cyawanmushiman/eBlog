@@ -37,11 +37,8 @@ class ContactController extends Controller
       return redirect()->route('contact.create')->withInput($inputs);
     }
 
-    // Contact::create($inputs);
     Mail::to(config('mail.admin'))->send(new ContactForm($inputs));
-    // //config/mail.phpの中のadmin宛にメールを送信する。フォームの送信内容をContactForm.phpに送る。
     Mail::to($inputs['email'])->send(new ContactForm($inputs));
-    // //フォームの中のemail宛にメールを送信する
 
     //送信ボタン連打攻撃対策
     $request->session()->regenerateToken();
