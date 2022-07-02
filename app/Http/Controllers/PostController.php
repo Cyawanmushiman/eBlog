@@ -10,6 +10,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Markdown;
 use App\Http\Requests\PostRequest;
+use App\Services\ImageService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -59,12 +60,6 @@ class PostController extends Controller
      *
      * @param PostRequest $request フォームリクエスト
      *
-     * @var array $inputs postデータにバリデーションをかけて代入
-     * @var string $newCategory_name 新しく追加するカテゴリー名
-     * @var object $newCategory 新しく追加したカテゴリーのデータ
-     * @var object $eyeCatchImage アイキャッチ画像
-     * @var string $original 画像ファイルの元々のファイル名
-     * @var string $name 元々のファイル名に年月日時分秒を追加したファイル名
      * @return void
      */
     public function store(PostRequest $request)
@@ -87,10 +82,7 @@ class PostController extends Controller
 
             //eyeCatchImage
             if (isset($inputs['eyeCatchImage'])) {
-                $original = $inputs['eyeCatchImage']
-                    ->getClientOriginalName();
-                $name  = date('Ymd_His') . '_' . $original;
-                $inputs['eyeCatchImage']->move('storage/public/eyeCatchImage/', $name);
+                $name = ImageService::upload($inputs['eyeCatchImage'],'eyeCatchImage');
                 $inputs['eyeCatchImage'] = $name;
             }
 
@@ -118,10 +110,10 @@ class PostController extends Controller
     {
         return view('post.show', [
             'post' => $post,
-            'category_posts' => Post::where('id', '!=', $post->id)
-                ->where('category_id', $post->category->id)
-                ->limit(2)
-                ->get(),
+            'category_posts' => Post::where('id', '!=', $post->id) # Postテーブルの投稿idが一致しないデータ
+                ->where('category_id', $post->category->id) # かつ、カテゴリーidが一致するデータ
+                ->limit(2) # 2件
+                ->get(), #取得
             'markdown' => Markdown::parse($post->body),
         ]);
     }
@@ -143,16 +135,10 @@ class PostController extends Controller
     }
 
     /**
-     *投稿内容更新
+     *  更新
+     *
      * @param PostRequest $request
      * @param Post $post
-     *
-     * @var array $inputs postデータにバリデーションをかけて代入
-     * @var string $newCategory_name 新しく追加するカテゴリー名
-     * @var object $newCategory 新しく追加したカテゴリーのデータ
-     * @var object $eyeCatchImage アイキャッチ画像
-     * @var string $original 画像ファイルの元々のファイル名
-     * @var string $name 元々のファイル名に年月日時分秒を追加したファイル名
      *
      * @return void
      */
@@ -180,9 +166,7 @@ class PostController extends Controller
                 if ($post->eyeCatchImage !== 'noImage.png') {
                     Storage::disk('public')->delete('eyeCatchImage/' . $post->eyeCatchImage);
                 }
-                $original = $inputs['eyeCatchImage']->getClientOriginalName();
-                $name = date('Ymd_His') . '_' . $original;
-                $inputs['eyeCatchImage']->move('storage/public/eyeCatchImage/', $name);
+                $name = ImageService::upload($inputs['eyeCatchImage'],'eyeCatchImage');
                 $inputs['eyeCatchImage'] = $name;
             }
 
