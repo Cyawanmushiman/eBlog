@@ -15,9 +15,9 @@ class CategoryController extends Controller
    * @var object $category URLパラメータで渡されたカテゴリーのレコード
    * @return void
    */
-  public function index(Category $category)
+  public function categoryPosts(Category $category)
   {
-    return view('category.index', [
+    return view('category.categoryPosts', [
       'posts' => $category->posts()->get(),
       'category' => $category,
     ]);
@@ -44,7 +44,7 @@ class CategoryController extends Controller
    *
    * @return void
    */
-  public function delete(Category $category){
+  public function categoryDelete(Category $category){
     $posts = $category->posts()->get();
     foreach($posts as $post){
       $post->update(['category_id' => 1]);
@@ -52,6 +52,6 @@ class CategoryController extends Controller
 
     $category->posts()->delete();
     $category->delete();
-    return redirect()->route('post.index')->with('message','カテゴリーを削除しました。（紐ずく投稿のカテゴリーはその他に変更しました。）');
+    return redirect()->route('post.postList')->with('message','カテゴリーを削除しました。（紐ずく投稿のカテゴリーはその他に変更しました。）');
   }
 }

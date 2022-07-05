@@ -7,7 +7,7 @@
     <h2 class="create__title--japanese">投稿編集</h2>
   </div>
 
-  <form class="create__form" action="{{route('post.update',$post)}}" method="post" enctype="multipart/form-data">
+  <form class="create__form" action="{{route('post.postUpdate',$post)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('put')
 
@@ -15,7 +15,7 @@
     <select name="category_id" type="text"  id="category">
         <option value="">選択してください</option>
       @foreach($categories as $category)
-        <option value="{{$category->id}}" 
+        <option value="{{$category->id}}"
           @if($post->category_id == $category->id)
             selected
           @endif

@@ -14,7 +14,7 @@
             <p>まだ投稿がありません</p>
         @endif
         @foreach($posts as $post)
-        <a href="{{route('post.show',$post)}}" class="BlogCard">
+        <a href="{{route('post.postShow',$post)}}" class="BlogCard">
           <span class="BlogCard__category">{{ $post->category->name }}</span>
           <div class="BlogCard__image"><img src="{{asset('storage/public/eyeCatchImage/'.$post->eyeCatchImage)}}"
               alt="eyeCatchImage"></div>
