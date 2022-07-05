@@ -6,7 +6,7 @@
     <h1 class="contact__title">Contact</h1>
     <h2 class="contact__title--japanese">お問い合わせ</h2>
   </div>
-  <form class="contact__form" action="{{route('contact.confirm')}}" method="post">
+  <form class="contact__form" action="{{route('contact.contactConfirm')}}" method="post">
     @csrf
     <label for="title">件名</label>
     <input type="text" id="title" name="title" value="{{old('title')}}">

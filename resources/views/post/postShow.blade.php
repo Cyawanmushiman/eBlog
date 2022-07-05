@@ -8,8 +8,8 @@
 
                 @can('admin')
                 <div class="single__touch">
-                    <a href="{{route('post.edit',$post)}}" class="singleEdit">edit</a>
-                    <form method="post" action="{{route('post.delete',$post)}}">
+                    <a href="{{route('post.postEdit',$post)}}" class="singleEdit">edit</a>
+                    <form method="post" action="{{route('post.postDelete',$post)}}">
                         @csrf
                         @method('delete')
                         <button type="submit" class="singleDelete"
@@ -37,20 +37,20 @@
                 </div>
 
                 <div class="Related__blogWrapper">
-                    @if(count($category_posts) === 0)
+                    @if(count($categoryPosts) === 0)
                         <p>関連記事がありません</p>
                     @endif
-                    @foreach($category_posts as $category_post)
-                    <a href="{{route('post.show',$category_post)}}" class="BlogCard">
+                    @foreach($categoryPosts as $post)
+                    <a href="{{route('post.postShow',$post)}}" class="BlogCard">
                         <span class="BlogCard__category">
-                            {{ $category_post->category->name }}
+                            {{ $post->category->name }}
                         </span>
                         <div class="BlogCard__image">
-                            <img src="{{asset('storage/public/eyeCatchImage/'.$category_post->eyeCatchImage)}}"
+                            <img src="{{asset('storage/public/eyeCatchImage/'.$post->eyeCatchImage)}}"
                                 alt="eyeCatchImage">
                         </div>
                         <h3 class="BlogCard__title">
-                            {{Str::limit($category_post->title,60,'...')}}
+                            {{Str::limit($post->title,60,'...')}}
                         </h3>
                     </a>
                     @endforeach

@@ -7,7 +7,7 @@
     <h2 class="contact__title--japanese">内容確認</h2>
   </div>
 
-  <form class="contact__form" action="{{route('contact.send')}}" method="post">
+  <form class="contact__form" action="{{route('contact.contactSend')}}" method="post">
     @csrf
     <label for="title">件名：</label>
     <p class="contact__text">{{$inputs['title']}}</p>

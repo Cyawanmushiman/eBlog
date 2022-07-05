@@ -16,31 +16,31 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/','PostController@index')->name('post.index');
+Route::get('/','PostController@postList')->name('post.postList');
 Auth::routes();
 
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['can:admin'])->group(function(){
   Route::get('/logout','UserController@getLogout')->name('logout');
-  Route::get('post/create','PostController@create')->name('post.create');
-  Route::post('post/store','PostController@store')->name('post.store');
-  Route::get('post/{post}/edit','PostController@edit')->name('post.edit');
-  Route::put('post/update/{post}','PostController@update')->name('post.update');
-  Route::delete('post/delete/{post}','PostController@delete')->name('post.delete');
-  Route::delete('category/delete/{category}','CategoryController@delete')->name('category.delete');
+  Route::get('post/newPost','PostController@newPost')->name('post.newPost');
+  Route::post('post/postKeep','PostController@postKeep')->name('post.postKeep');
+  Route::get('post/{post}/postEdit','PostController@postEdit')->name('post.postEdit');
+  Route::put('post/postUpdate/{post}','PostController@postUpdate')->name('post.postUpdate');
+  Route::delete('post/postDelete/{post}','PostController@postDelete')->name('post.postDelete');
+  Route::delete('category/categoryDelete/{category}','CategoryController@categoryDelete')->name('category.categoryDelete');
 });
 
-Route::get('post/index','PostController@index')->name('post.index');
-Route::get('post/show/{post}','PostController@show')->name('post.show');
-Route::get('category/{category}','CategoryController@index')->name('category.index');
+Route::get('post/postList','PostController@postList')->name('post.postList');
+Route::get('post/postShow/{post}','PostController@postShow')->name('post.postShow');
+Route::get('category/{category}','CategoryController@categoryPosts')->name('category.categoryPosts');
 //コメント
 // Route::post('/post/comment/store','CommentController@store')->name('post.store');
 
 //お問い合わせ
-Route::get('contact/create','ContactController@create')->name('contact.create');
-Route::post('contact/confirm','ContactController@confirm')->name('contact.confirm');
-Route::post('contact/send','ContactController@send')->name('contact.send');
+Route::get('contact/newContact','ContactController@newContact')->name('contact.newContact');
+Route::post('contact/contactConfirm','ContactController@contactConfirm')->name('contact.contactConfirm');
+Route::post('contact/contactSend','ContactController@contactSend')->name('contact.contactSend');
 
 //管理者情報ページ
-Route::get('about/index','AboutController@index')->name('about.index');
+Route::get('about/aboutShow','AboutController@aboutShow')->name('about.aboutShow');

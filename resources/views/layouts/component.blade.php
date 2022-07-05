@@ -30,7 +30,7 @@
             alt="search-Icon" /></a>
         <!--data-target属性を追加する。この値をモーダルウィンドウのID属性とリンクさせることで、どのモーダルウィンドウを開くかわかるようにする。-->
       </div>
-      <a href="{{route('post.index')}}" class="header__title">
+      <a href="{{route('post.postList')}}" class="header__title">
         eBlog
       </a>
 
@@ -40,15 +40,15 @@
           <div class="inner">
             <a href="index.html" class="humburgerNav__title">eBlog</a>
             <ul class="menu">
-              <li class="menu-item {{url()->current()==route('post.index') ? 'active' : ''}}"><a
-                  href="{{route('post.index')}}">Home</a></li>
-              <li class="menu-item {{url()->current()==route('contact.create') ? 'active' : ''}}"><a
-                  href="{{route('contact.create')}}">Contact</a></li>
-              <li class="menu-item {{url()->current() == route('about.index') ? 'active' : ''}}"><a
-                  href="{{route('about.index')}}">About</a></li>
+              <li class="menu-item {{url()->current()==route('post.postList') ? 'active' : ''}}"><a
+                  href="{{route('post.postList')}}">Home</a></li>
+              <li class="menu-item {{url()->current()==route('contact.newContact') ? 'active' : ''}}"><a
+                  href="{{route('contact.newContact')}}">Contact</a></li>
+              <li class="menu-item {{url()->current() == route('about.aboutShow') ? 'active' : ''}}"><a
+                  href="{{route('about.aboutShow')}}">About</a></li>
               @can('admin')
-              <li class="menu-item {{url()->current()==route('post.create') ? 'active' : ''}}"><a
-                  href="{{route('post.create')}}">New Post</a></li>
+              <li class="menu-item {{url()->current()==route('post.newPost') ? 'active' : ''}}"><a
+                  href="{{route('post.newPost')}}">New Post</a></li>
               @endcan
             </ul>
           </div>
@@ -70,7 +70,7 @@
       <!--data-target属性と同じ値のID属性をつける。-->
       <div class="modal__bg js_modal_close"></div>
       <div class="modal__content">
-        <form action="{{route('post.index')}}" method="get">
+        <form action="{{route('post.postList')}}" method="get">
           <input class="searchInput" type="search" name="keyword" value="{{$keyword ?? ''}}" placeholder="記事検索">
           <input type="submit" value="検索" class="searchSubmit">
         </form>

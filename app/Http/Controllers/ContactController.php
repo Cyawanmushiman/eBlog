@@ -14,8 +14,8 @@ class ContactController extends Controller
    *
    * @return void
    */
-  public function create(){
-    return view('contact.create');
+  public function newContact(){
+    return view('contact.newContact');
   }
 
   /**
@@ -24,17 +24,17 @@ class ContactController extends Controller
    * @param Request $request
    * @return void
    */
-  public function confirm(ContactRequest $request){
-    return view('contact.confirm',[
+  public function contactConfirm(ContactRequest $request){
+    return view('contact.contactConfirm',[
         'inputs' => $request->all(),
     ]);
   }
 
-  public function send(ContactRequest $request){
+  public function contactSend(ContactRequest $request){
     $inputs = $request->all();
 
     if(isset($inputs['back'])){
-      return redirect()->route('contact.create')->withInput($inputs);
+      return redirect()->route('contact.newContact')->withInput($inputs);
     }
 
     Mail::to(config('mail.admin'))->send(new ContactForm($inputs));
@@ -43,6 +43,6 @@ class ContactController extends Controller
     //送信ボタン連打攻撃対策
     $request->session()->regenerateToken();
 
-    return redirect()->route('post.index')->with('message','お問い合わせを送信しました');
+    return redirect()->route('post.postList')->with('message','お問い合わせを送信しました');
   }
 }

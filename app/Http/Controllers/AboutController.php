@@ -13,9 +13,9 @@ class AboutController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function aboutShow()
     {
-        return view('about.index', [
+        return view('about.aboutShow', [
             'posts' => Post::whereHas('category', function ($q) {
                 $q->where('name', '実績');
             })->get(),

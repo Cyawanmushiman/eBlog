@@ -25,7 +25,7 @@ class PostController extends Controller
      *
      * @return void
      */
-    public function index(Request $request)
+    public function postList(Request $request)
     {
         //キーワード受け取り
         $keyword = $request->input('keyword');
@@ -36,7 +36,7 @@ class PostController extends Controller
             $query = $query->where('title', 'like', '%' . $keyword . '%');
         }
 
-        return view('post.index', [
+        return view('post.postList', [
             'posts' => $query->orderBy('created_at', 'desc')
                 ->paginate(10),
             'keyword' => $keyword,
@@ -48,9 +48,9 @@ class PostController extends Controller
      *
      * @return void
      */
-    public function create()
+    public function newPost()
     {
-        return view('post.create', [
+        return view('post.newPost', [
             'categories' => Category::all(),
         ]);
     }
@@ -62,10 +62,10 @@ class PostController extends Controller
      *
      * @return void
      */
-    public function store(PostRequest $request)
+    public function postKeep(PostRequest $request ,Category $category)
     {
         $inputs = $request->all();
-        $newCategory_name = $inputs['newCategory_name'];
+        $newCategoryName = $inputs['newCategoryName'];
 
         //カテゴリー未選択の場合
         if (empty($inputs['category_id'])) {
@@ -75,8 +75,8 @@ class PostController extends Controller
         try {
             DB::beginTransaction();
             //「新しいカテゴリー」を指定している場合
-            if (isset($newCategory_name)) {
-                $newCategory = Category::create(['name' => $newCategory_name]);
+            if (isset($newCategoryName)) {
+                $newCategory = $category->createCategory($newCategoryName);
                 $inputs['category_id'] = $newCategory->id;
             }
 
@@ -106,11 +106,11 @@ class PostController extends Controller
      *
      * @return void
      */
-    public function show(Post $post)
+    public function postShow(Post $post)
     {
-        return view('post.show', [
+        return view('post.postShow', [
             'post' => $post,
-            'category_posts' => Post::where('id', '!=', $post->id) # Postテーブルの投稿idが一致しないデータ
+            'categoryPosts' => Post::where('id', '!=', $post->id) # Postテーブルの投稿idが一致しないデータ
                 ->where('category_id', $post->category->id) # かつ、カテゴリーidが一致するデータ
                 ->limit(2) # 2件
                 ->get(), #取得
@@ -126,9 +126,9 @@ class PostController extends Controller
      * @var object $categories カテゴリーテーブルの全データ
      * @return void
      */
-    public function edit(Post $post)
+    public function postEdit(Post $post)
     {
-        return view('post.edit', [
+        return view('post.postEdit', [
             'post' => $post,
             'categories' => Category::all(),
         ]);
@@ -142,10 +142,10 @@ class PostController extends Controller
      *
      * @return void
      */
-    public function update(PostRequest $request, Post $post)
+    public function postUpdate(PostRequest $request, Post $post)
     {
         $inputs = $request->all();
-        $newCategory_name = $inputs['newCategory_name'];
+        $newCategoryName = $inputs['newCategory_name'];
 
         //カテゴリー
         if ($inputs['category_id'] === "") {
@@ -156,8 +156,8 @@ class PostController extends Controller
             DB::beginTransaction();
 
             //新しいカテゴリーが入っていたら
-            if (isset($newCategory_name)) {
-                $newCategory = Category::create(['name' => $newCategory_name]);
+            if (isset($newCategoryName)) {
+                $newCategory = Category::create(['name' => $newCategoryName]);
                 $inputs['category_id'] = $newCategory->id;
             }
 
@@ -187,12 +187,12 @@ class PostController extends Controller
      *
      * @return void
      */
-    public function delete(Post $post)
+    public function postDelete(Post $post)
     {
         if ($post->eyeCatchImage !== 'noImage.png') {
             Storage::disk('public')->delete('eyeCatchImage/' . $post->eyeCatchImage);
         }
         $post->delete();
-        return redirect()->route('post.index')->with('message', '一つの投稿を削除しました');
+        return redirect()->route('post.postList')->with('message', '一つの投稿を削除しました');
     }
 }

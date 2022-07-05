@@ -7,7 +7,7 @@
     <h2 class="create__title--japanese">新規投稿</h2>
   </div>
 
-  <form class="create__form" action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
+  <form class="create__form" action="{{route('post.postKeep')}}" method="post" enctype="multipart/form-data">
     @csrf
     <label for="category">category</label>
     <select name="category_id" type="text"  id="category">
