@@ -27,7 +27,7 @@ class PostRequest extends FormRequest
             'title' => 'required|max:255',
             'body' => 'required|max:5000',
             'eyeCatchImage' => 'image|max:1024',
-            'newCategory_name' => ['name' => 'unique:categories,name'],
+            'newCategoryName' => ['name' => 'unique:categories,name'],
         ];
     }
 }

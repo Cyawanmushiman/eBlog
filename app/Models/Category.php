@@ -10,14 +10,32 @@ class Category extends Model
     use HasFactory;
 
     protected $guarded = [
-      'id',
+        'id',
     ];
 
-    public function posts(){
-      return $this->hasMany('App\Models\Post');
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
     }
 
-     public function createCategory ($newCategory_name){
-         return $this->create(['categoryName' => $newCategory_name]);
-     }
+    public function createCategory($newCategoryName)
+    {
+        return $this->create(['name' => $newCategoryName]);
+    }
+
+    public function getAllCategories()
+    {
+        return $categories = $this->all();
+    }
+
+    public function getCategoryPosts()
+    {
+        $posts = $this->posts()->get();
+        return $posts;
+    }
+
+    public function categoryDelete()
+    {
+        return $this->delete();
+    }
 }

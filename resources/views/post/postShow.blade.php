@@ -37,10 +37,10 @@
                 </div>
 
                 <div class="Related__blogWrapper">
-                    @if(count($categoryPosts) === 0)
+                    @if(count($relatedPosts) === 0)
                         <p>関連記事がありません</p>
                     @endif
-                    @foreach($categoryPosts as $post)
+                    @foreach($relatedPosts as $post)
                     <a href="{{route('post.postShow',$post)}}" class="BlogCard">
                         <span class="BlogCard__category">
                             {{ $post->category->name }}

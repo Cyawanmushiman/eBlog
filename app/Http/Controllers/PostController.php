@@ -16,53 +16,49 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+    private $post;
+    private $category;
+
+    public function __construct(Post $post)
+    {
+        $this->post = $post;
+    }
+
+
     /**
      * 記事一覧の表示。ホーム画面。
-     *
      * @param Request $request
-     *
      * @var mixed $keyword 「検索」で入力された値
-     *
      * @return void
      */
-    public function postList(Request $request)
+    public function postList(Request $request, Post $post)
     {
         //キーワード受け取り
         $keyword = $request->input('keyword');
-        $query = Post::query();
-
-        //もしキーワードがあったら
-        if (isset($keyword)) {
-            $query = $query->where('title', 'like', '%' . $keyword . '%');
-        }
 
         return view('post.postList', [
-            'posts' => $query->orderBy('created_at', 'desc')
-                ->paginate(10),
+            'posts' => $post->getPaginateSearchPosts($keyword),
             'keyword' => $keyword,
         ]);
     }
 
     /**
      * 新規投稿の表示
-     *
      * @return void
      */
-    public function newPost()
+    public function newPost(Category $category)
     {
         return view('post.newPost', [
-            'categories' => Category::all(),
+            'categories' => $category->getAllCategories(),
         ]);
     }
 
     /**
      * 新規投稿からのpostデータをデータベースに登録
-     *
      * @param PostRequest $request フォームリクエスト
-     *
      * @return void
      */
-    public function postKeep(PostRequest $request ,Category $category)
+    public function postKeep(PostRequest $request ,Category $category, Post $post)
     {
         $inputs = $request->all();
         $newCategoryName = $inputs['newCategoryName'];
@@ -86,7 +82,7 @@ class PostController extends Controller
                 $inputs['eyeCatchImage'] = $name;
             }
 
-            Post::create($inputs);
+            $post->createPost($inputs);
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
@@ -98,22 +94,16 @@ class PostController extends Controller
 
     /**
      * 投稿記事の個別ページ
-     *
      * @param Post $post 一覧画面より、選択した投稿のデータ
-     *
      * @var object $category_posts  詳細ページと同じカテゴリーidを持つ投稿データ達
      * @var object $markdown
-     *
      * @return void
      */
     public function postShow(Post $post)
     {
         return view('post.postShow', [
             'post' => $post,
-            'categoryPosts' => Post::where('id', '!=', $post->id) # Postテーブルの投稿idが一致しないデータ
-                ->where('category_id', $post->category->id) # かつ、カテゴリーidが一致するデータ
-                ->limit(2) # 2件
-                ->get(), #取得
+            'relatedPosts' => $post->getRelatedPosts($post->id,$post->category->id,2),
             'markdown' => Markdown::parse($post->body),
         ]);
     }
@@ -126,11 +116,11 @@ class PostController extends Controller
      * @var object $categories カテゴリーテーブルの全データ
      * @return void
      */
-    public function postEdit(Post $post)
+    public function postEdit(Post $post,Category $category)
     {
         return view('post.postEdit', [
             'post' => $post,
-            'categories' => Category::all(),
+            'categories' => $category->getAllCategories(),
         ]);
     }
 
@@ -142,7 +132,7 @@ class PostController extends Controller
      *
      * @return void
      */
-    public function postUpdate(PostRequest $request, Post $post)
+    public function postUpdate(PostRequest $request, Category $category, Post $post)
     {
         $inputs = $request->all();
         $newCategoryName = $inputs['newCategory_name'];
@@ -157,7 +147,7 @@ class PostController extends Controller
 
             //新しいカテゴリーが入っていたら
             if (isset($newCategoryName)) {
-                $newCategory = Category::create(['name' => $newCategoryName]);
+                $newCategory = $category->createCategory($newCategoryName);
                 $inputs['category_id'] = $newCategory->id;
             }
 

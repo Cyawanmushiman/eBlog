@@ -1,4 +1,4 @@
-@inject('categories', 'App\Http\Controllers\CategoryController')
+@inject('categories', 'App\Models\Category')
 <div class="sidebar col-md-4">
   <section class="profile">
     <div class="titleWrapper">
@@ -26,7 +26,7 @@
     </div>
 
     <ul class="categories__menu">
-      @foreach($categories->getCategories() as $category)
+      @foreach($categories->getAllCategories() as $category)
       <li class="categories__menuItem">
         <a href="{{route('category.categoryPosts',$category)}}">{{$category->name}}</a>
         @can('admin')
