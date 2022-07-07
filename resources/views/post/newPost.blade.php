@@ -16,7 +16,7 @@
         <option value="{{$category->id}}" {{old('category_id') == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
         @endforeach
     </select>
-    <input type="text" id="category" name="newCategory_name" placeholder="新しいカテゴリー" value="{{ old('newCategory_name') }}">
+    <input type="text" id="category" name="newCategoryName" placeholder="新しいカテゴリー" value="{{ old('newCategoryName') }}">
 
     <label for="title">title</label>
     <input type="text" id="title" name="title" value="{{old('title')}}">

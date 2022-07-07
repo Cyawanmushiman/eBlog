@@ -18,21 +18,9 @@ class CategoryController extends Controller
   public function categoryPosts(Category $category)
   {
     return view('category.categoryPosts', [
-      'posts' => $category->posts()->get(),
+      'posts' => $category->getCategoryPosts(),
       'category' => $category,
     ]);
-  }
-
-  /**
-   * 全カテゴリーデータを返すメソッド
-   *
-   * bladeの@injectで使用する目的
-   *
-   * @return object $categories
-   */
-  public function getCategories()
-  {
-    return $categories = Category::all();
   }
 
   /**
@@ -45,13 +33,12 @@ class CategoryController extends Controller
    * @return void
    */
   public function categoryDelete(Category $category){
-    $posts = $category->posts()->get();
+    $posts = $category->getCategoryPosts();
     foreach($posts as $post){
       $post->update(['category_id' => 1]);
     }
 
-    $category->posts()->delete();
-    $category->delete();
+    $category->categoryDelete();
     return redirect()->route('post.postList')->with('message','カテゴリーを削除しました。（紐ずく投稿のカテゴリーはその他に変更しました。）');
   }
 }

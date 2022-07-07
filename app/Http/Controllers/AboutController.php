@@ -13,12 +13,10 @@ class AboutController extends Controller
      *
      * @return void
      */
-    public function aboutShow()
+    public function aboutShow(Post $post)
     {
         return view('about.aboutShow', [
-            'posts' => Post::whereHas('category', function ($q) {
-                $q->where('name', '実績');
-            })->get(),
+            'posts' => $post->getRelationPosts('category','name', '実績'),
         ]);
     }
 }
