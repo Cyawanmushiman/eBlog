@@ -18,6 +18,12 @@ class Category extends Model
         return $this->hasMany('App\Models\Post');
     }
 
+    //DB操作
+    public function getOneCategory($id)
+    {
+        return $this->where('id',$id)->first();
+    }
+    
     public function createCategory($newCategoryName)
     {
         return $this->create(['name' => $newCategoryName]);

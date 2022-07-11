@@ -33,6 +33,7 @@ class ContactController extends Controller
   public function contactSend(ContactRequest $request){
     $inputs = $request->all();
 
+    //戻るボタンが押されたとき、データを維持したまま戻る
     if(isset($inputs['back'])){
       return redirect()->route('contact.newContact')->withInput($inputs);
     }

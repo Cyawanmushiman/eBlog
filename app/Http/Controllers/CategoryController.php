@@ -6,6 +6,11 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    private $category;
+    public function __construct(Category $category)
+    {
+        $this->category = $category;
+    }
     /**
    * カテゴリー一覧ページ
    *
@@ -15,11 +20,12 @@ class CategoryController extends Controller
    * @var object $category URLパラメータで渡されたカテゴリーのレコード
    * @return void
    */
-  public function categoryPosts(Category $category)
+  public function categoryPosts(int $categoryId)
   {
+    $oneCategory = $this->category->getOneCategory($categoryId);
     return view('category.categoryPosts', [
-      'posts' => $category->getCategoryPosts(),
-      'category' => $category,
+      'posts' => $oneCategory->getCategoryPosts(),
+      'category' => $oneCategory,
     ]);
   }
 
@@ -32,13 +38,17 @@ class CategoryController extends Controller
    *
    * @return void
    */
-  public function categoryDelete(Category $category){
-    $posts = $category->getCategoryPosts();
+  public function categoryDelete(int $categoryId){
+    $oneCategory = $this->category->getOneCategory($categoryId);
+    $posts = $oneCategory->getCategoryPosts();
     foreach($posts as $post){
       $post->update(['category_id' => 1]);
     }
 
-    $category->categoryDelete();
-    return redirect()->route('post.postList')->with('message','カテゴリーを削除しました。（紐ずく投稿のカテゴリーはその他に変更しました。）');
+    $oneCategory->categoryDelete();
+    return redirect()->route('post.postList')->with([
+        'message' => 'カテゴリーを削除しました。（紐ずく投稿のカテゴリーはその他に変更しました。）',
+        'status' => 'alert',
+    ]);
   }
 }
