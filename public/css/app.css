@@ -397,7 +397,7 @@ nav
 
 /*  css ハンバーガーメニュ */
 /* ハンバーガーメニュー */
-.sessionMessage {
+.textGreen {
   font-size: 12px;
   position: absolute;
   top: 16%;
@@ -405,7 +405,7 @@ nav
   color: limegreen;
 }
 
-.errorMessage {
+.textRed {
   font-size: 12px;
   position: absolute;
   top: 13%;

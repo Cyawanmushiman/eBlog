@@ -1,5 +1,4 @@
-@extends('layouts.component')
-@section('content')
+<x-app>
 {{Breadcrumbs::render('category',$category)}}
 <div class="container">
   <div class="row">
@@ -28,4 +27,4 @@
     @include('layouts.sidebar')
   </div>
 </div>
-@endsection
+</x-app>

@@ -1,7 +1,6 @@
-@extends('layouts.component')
 <p>管理者のみ閲覧可能です</p>
 @can('admin')
-@section('content')
+<x-app>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -80,5 +79,5 @@
     </div>
   </div>
 </div>
-@endsection
+</x-app>
 @endcan

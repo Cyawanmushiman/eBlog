@@ -8,7 +8,7 @@ class UserController extends Controller
 {
   public function getLogout(){
     Auth::logout();
-    return redirect()->route('post.index');
+    return redirect()->route('post.postList');
   }
 }
 
