@@ -1,6 +1,4 @@
-@extends('layouts.component')
-
-@section('content')
+<x-app>
 <div class="container container__login">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -73,4 +71,4 @@
     </div>
   </div>
 </div>
-@endsection
+</x-app>

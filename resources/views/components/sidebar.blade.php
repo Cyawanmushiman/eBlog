@@ -36,7 +36,6 @@
           <button type="submit" class="categoryDelete" onclick="return confirm('このカテゴリーを削除してもよろしいですか？（このカテゴリーに紐ずく投稿は「その他」にカテゴライズされます。）')">delete</button>
         </form>
         @endcan
-
       </li>
       @endforeach
     </ul>

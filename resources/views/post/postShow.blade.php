@@ -1,5 +1,4 @@
-@extends('layouts.component')
-@section('content')
+<x-app>
 {{Breadcrumbs::render('show',$post)}}
 <div class="container">
     <div class="row">
@@ -38,7 +37,7 @@
 
                 <div class="Related__blogWrapper">
                     @if(count($relatedPosts) === 0)
-                        <p>関連記事がありません</p>
+                    <p>関連記事がありません</p>
                     @endif
                     @foreach($relatedPosts as $post)
                     <a href="{{route('post.postShow',$post)}}" class="BlogCard">
@@ -57,7 +56,7 @@
                 </div>
             </section>
         </div>
-        @include('layouts.sidebar')
+        <x-sidebar />
     </div>
 </div>
-@endsection
+</x-app>

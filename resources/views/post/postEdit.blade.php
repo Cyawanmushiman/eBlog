@@ -1,5 +1,4 @@
-@extends('layouts.component')
-@section('content')
+<x-app>
 {{Breadcrumbs::render('edit',$post)}}
 <div class="create">
   <div class="titleWrapper">
@@ -38,4 +37,4 @@
     <button class="create__btn" type="submit">update!</button>
   </form>
 </div>
-@endsection
+</x-app>

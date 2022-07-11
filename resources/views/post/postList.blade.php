@@ -1,5 +1,4 @@
-@extends('layouts.component')
-@section('content')
+<x-app>
 {{Breadcrumbs::render('home')}}
 <div class="container">
   <div class="row">
@@ -25,7 +24,7 @@
 
       {{$posts->appends(['keyword'=>$keyword])->links('vendor.pagination.custom-2')}}
     </main>
-    @include('layouts.sidebar')
+    <x-sidebar />
   </div>
 </div>
-@endsection
+</x-app>

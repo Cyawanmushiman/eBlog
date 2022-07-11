@@ -33,72 +33,14 @@
       <a href="{{route('post.postList')}}" class="header__title">
         eBlog
       </a>
-
-      <!-- ハンバーガーメニュー -->
-      <div id="navArea">
-        <nav class="humburgerNav">
-          <div class="inner">
-            <a href="index.html" class="humburgerNav__title">eBlog</a>
-            <ul class="menu">
-              <li class="menu-item {{url()->current()==route('post.postList') ? 'active' : ''}}"><a
-                  href="{{route('post.postList')}}">Home</a></li>
-              <li class="menu-item {{url()->current()==route('contact.newContact') ? 'active' : ''}}"><a
-                  href="{{route('contact.newContact')}}">Contact</a></li>
-              <li class="menu-item {{url()->current() == route('about.aboutShow') ? 'active' : ''}}"><a
-                  href="{{route('about.aboutShow')}}">About</a></li>
-              @can('admin')
-              <li class="menu-item {{url()->current()==route('post.newPost') ? 'active' : ''}}"><a
-                  href="{{route('post.newPost')}}">New Post</a></li>
-              @endcan
-            </ul>
-          </div>
-        </nav>
-
-        <div class="toggle_btn" id="btn17">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-        <div id="mask"></div>
-      </div>
-      <!-- ハンバーガーメニュー -->
+      <x-humburger />
     </header>
 
-    {{-- モーダル --}}
-    <div id="modal01" class="modal js_modal">
-      <!--data-target属性と同じ値のID属性をつける。-->
-      <div class="modal__bg js_modal_close"></div>
-      <div class="modal__content">
-        <form action="{{route('post.postList')}}" method="get">
-          <input class="searchInput" type="search" name="keyword" value="{{$keyword ?? ''}}" placeholder="記事検索">
-          <input type="submit" value="検索" class="searchSubmit">
-        </form>
-        <a href="" class="js_modal_close">閉じる</a>
-      </div>
-    </div>
-    {{-- モーダル --}}
+    <x-modal />
 
-    @if($errors->any())
-    <!-- もし、セッションの中にエラーメッセージがあれば -->
-    <div class="errorMessage">
-      <ul>
-        @foreach($errors->all() as $error)
-        <li>{{$error}}</li>
-        @endforeach
-        @if(empty($errors->first('image')))
-        <!-- もし画像ファイル以外でエラーがあれば -->
-        <li>画像ファイルがあれば、再度、選択してください。</li>
-        @endif
-      </ul>
-    </div>
-    @endif
+    <x-flash-message status="session('status')" />
 
-    @if(session('message'))
-    <div class="sessionMessage">{{session('message')}}</div>
-    @endif
-
-    @yield('content')
+    {{ $slot }}
 
     <footer class="footer">
       <a href="index.html" class="footer__title">

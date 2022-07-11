@@ -154,8 +154,8 @@ return [
     */
 
     'attributes' => [
-      'title' => '件名',
-      'body' => '内容',
+      'title' => 'title',
+      'body' => 'body',
       'email' => 'メールアドレス',
       'newCategory_name' => '「新しいカテゴリー」'
     ],

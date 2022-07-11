@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    private $post;
-    private $category;
-
     public function __construct(Post $post)
     {
         $this->post = $post;
@@ -86,10 +83,16 @@ class PostController extends Controller
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            return back()->with('message', '新規投稿に失敗しました');
+            return back()->with([
+                'message' => '新規投稿に失敗しました',
+                'status' => 'alert',
+            ]);
         }
 
-        return back()->with('message', '新規投稿を作成しました');
+        return back()->with([
+            'message' => '新規投稿を作成しました',
+            'status' => 'info',
+        ]);
     }
 
     /**
@@ -164,10 +167,16 @@ class PostController extends Controller
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            return back()->with('message', '投稿の更新に失敗しました');
+            return back()->with([
+                'message' => '投稿の更新に失敗しました',
+                'status' => 'alert',
+            ]);
         }
 
-        return back()->with('message', '投稿を更新しました');
+        return back()->with([
+            'message' => '投稿を更新しました',
+            'status' => 'info',
+        ]);
     }
 
     /**
@@ -183,6 +192,9 @@ class PostController extends Controller
             Storage::disk('public')->delete('eyeCatchImage/' . $post->eyeCatchImage);
         }
         $post->delete();
-        return redirect()->route('post.postList')->with('message', '一つの投稿を削除しました');
+        return redirect()->route('post.postList')->with([
+            'message' => '一つの投稿を削除しました。',
+            'status' => 'alert',
+        ]);
     }
 }
