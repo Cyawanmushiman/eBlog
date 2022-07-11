@@ -24,7 +24,7 @@
         </div>
       </main>
     </div>
-    @include('layouts.sidebar')
+    <x-sidebar />
   </div>
 </div>
 </x-app>
