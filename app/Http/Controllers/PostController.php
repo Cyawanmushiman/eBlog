@@ -16,185 +16,190 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    public function __construct(Post $post)
-    {
-        $this->post = $post;
+  private $post;
+  private $category;
+  public function __construct(Post $post, Category $category)
+  {
+    $this->post = $post;
+    $this->category = $category;
+  }
+
+
+  /**
+   * 記事一覧の表示。ホーム画面。
+   * @param Request $request
+   * @var mixed $keyword 「検索」で入力された値
+   * @return void
+   */
+  public function postList(Request $request)
+  {
+    //キーワード受け取り
+    $keyword = $request->input('keyword');
+
+    return view('post.postList', [
+      'posts' => $this->post->getPaginateSearchPosts($keyword),
+      'keyword' => $keyword,
+    ]);
+  }
+
+  /**
+   * 新規投稿の表示
+   * @return void
+   */
+  public function newPost()
+  {
+    return view('post.newPost', [
+      'categories' => $this->category->getAllCategories(),
+    ]);
+  }
+
+  /**
+   * 新規投稿からのpostデータをデータベースに登録
+   * @param PostRequest $request フォームリクエスト
+   * @return void
+   */
+  public function postKeep(PostRequest $request)
+  {
+    $inputs = $request->all();
+    $newCategoryName = $inputs['newCategoryName'];
+
+    //カテゴリー未選択の場合
+    if (empty($inputs['category_id'])) {
+      $inputs['category_id'] = 1;
     }
 
+    try {
+      DB::beginTransaction();
+      //「新しいカテゴリー」を指定している場合
+      if (isset($newCategoryName)) {
+        $newCategory = $this->category->createCategory($newCategoryName);
+        $inputs['category_id'] = $newCategory->id;
+      }
 
-    /**
-     * 記事一覧の表示。ホーム画面。
-     * @param Request $request
-     * @var mixed $keyword 「検索」で入力された値
-     * @return void
-     */
-    public function postList(Request $request, Post $post)
-    {
-        //キーワード受け取り
-        $keyword = $request->input('keyword');
+      //eyeCatchImage
+      if (isset($inputs['eyeCatchImage'])) {
+        $name = ImageService::upload($inputs['eyeCatchImage'], 'eyeCatchImage');
+        $inputs['eyeCatchImage'] = $name;
+      }
 
-        return view('post.postList', [
-            'posts' => $post->getPaginateSearchPosts($keyword),
-            'keyword' => $keyword,
-        ]);
+      $this->post->createPost($inputs);
+      DB::commit();
+    } catch (Exception $e) {
+      DB::rollBack();
+      return back()->with([
+        'message' => '新規投稿に失敗しました',
+        'status' => 'alert',
+      ]);
     }
 
-    /**
-     * 新規投稿の表示
-     * @return void
-     */
-    public function newPost(Category $category)
-    {
-        return view('post.newPost', [
-            'categories' => $category->getAllCategories(),
-        ]);
+    return back()->with([
+      'message' => '新規投稿を作成しました',
+      'status' => 'info',
+    ]);
+  }
+
+  /**
+   * 投稿記事の個別ページ
+   * @var object $category_posts  詳細ページと同じカテゴリーidを持つ投稿データ達
+   * @var object $markdown
+   */
+  public function postShow(int $postId)
+  {
+    $onePost = $this->post->getOnePost($postId);
+    return view('post.postShow', [
+      'post' => $onePost,
+      'relatedPosts' => $onePost->getRelatedPosts($postId, $onePost->category_id, 2),
+      'markdown' => Markdown::parse($onePost->body),
+    ]);
+  }
+
+  /**
+   * 投稿編集ページ
+   *
+   * @param Post $post 一覧画面で選択した投稿データ
+   *
+   * @var object $categories カテゴリーテーブルの全データ
+   * @return void
+   */
+  public function postEdit(int $postId)
+  {
+    $onePost = $this->post->getOnePost($postId);
+    return view('post.postEdit', [
+      'post' => $onePost,
+      'categories' => $this->category->getAllCategories(),
+    ]);
+  }
+
+  /**
+   *  更新
+   *
+   * @param PostRequest $request
+   * @param Post $post
+   *
+   * @return void
+   */
+  public function postUpdate(PostRequest $request, int $postId)
+  {
+    $onePost = $this->post->getOnePost($postId);
+    $inputs = $request->all();
+    $newCategoryName = $inputs['newCategory_name'];
+
+    //カテゴリー
+    if ($inputs['category_id'] === "") {
+      $inputs['category_id'] = 1;
     }
 
-    /**
-     * 新規投稿からのpostデータをデータベースに登録
-     * @param PostRequest $request フォームリクエスト
-     * @return void
-     */
-    public function postKeep(PostRequest $request ,Category $category, Post $post)
-    {
-        $inputs = $request->all();
-        $newCategoryName = $inputs['newCategoryName'];
+    try {
+      DB::beginTransaction();
 
-        //カテゴリー未選択の場合
-        if (empty($inputs['category_id'])) {
-            $inputs['category_id'] = 1;
+      //新しいカテゴリーが入っていたら
+      if (isset($newCategoryName)) {
+        $newCategory = $this->category->createCategory($newCategoryName);
+        $inputs['category_id'] = $newCategory->id;
+      }
+
+      //eyeCatchImage
+      if (isset($inputs['eyeCatchImage'])) {
+        if ($onePost->eyeCatchImage !== 'noImage.png') {
+          Storage::disk('public')->delete('eyeCatchImage/' . $onePost->eyeCatchImage);
         }
+        $name = ImageService::upload($inputs['eyeCatchImage'], 'eyeCatchImage');
+        $inputs['eyeCatchImage'] = $name;
+      }
 
-        try {
-            DB::beginTransaction();
-            //「新しいカテゴリー」を指定している場合
-            if (isset($newCategoryName)) {
-                $newCategory = $category->createCategory($newCategoryName);
-                $inputs['category_id'] = $newCategory->id;
-            }
-
-            //eyeCatchImage
-            if (isset($inputs['eyeCatchImage'])) {
-                $name = ImageService::upload($inputs['eyeCatchImage'],'eyeCatchImage');
-                $inputs['eyeCatchImage'] = $name;
-            }
-
-            $post->createPost($inputs);
-            DB::commit();
-        } catch (Exception $e) {
-            DB::rollBack();
-            return back()->with([
-                'message' => '新規投稿に失敗しました',
-                'status' => 'alert',
-            ]);
-        }
-
-        return back()->with([
-            'message' => '新規投稿を作成しました',
-            'status' => 'info',
-        ]);
+      $onePost->update($inputs);
+      DB::commit();
+    } catch (Exception $e) {
+      DB::rollBack();
+      return back()->with([
+        'message' => '投稿の更新に失敗しました',
+        'status' => 'alert',
+      ]);
     }
 
-    /**
-     * 投稿記事の個別ページ
-     * @param Post $post 一覧画面より、選択した投稿のデータ
-     * @var object $category_posts  詳細ページと同じカテゴリーidを持つ投稿データ達
-     * @var object $markdown
-     * @return void
-     */
-    public function postShow(Post $post)
-    {
-        return view('post.postShow', [
-            'post' => $post,
-            'relatedPosts' => $post->getRelatedPosts($post->id,$post->category->id,2),
-            'markdown' => Markdown::parse($post->body),
-        ]);
+    return back()->with([
+      'message' => '投稿を更新しました',
+      'status' => 'info',
+    ]);
+  }
+
+  /**
+   * 投稿削除
+   *
+   * @param Post $post
+   *
+   * @return void
+   */
+  public function postDelete(int $postId)
+  {
+    $onePost = $this->post->getOnePost($postId);
+    if ($onePost->eyeCatchImage !== 'noImage.png') {
+      Storage::disk('public')->delete('eyeCatchImage/' . $onePost->eyeCatchImage);
     }
-
-    /**
-     * 投稿編集ページ
-     *
-     * @param Post $post 一覧画面で選択した投稿データ
-     *
-     * @var object $categories カテゴリーテーブルの全データ
-     * @return void
-     */
-    public function postEdit(Post $post,Category $category)
-    {
-        return view('post.postEdit', [
-            'post' => $post,
-            'categories' => $category->getAllCategories(),
-        ]);
-    }
-
-    /**
-     *  更新
-     *
-     * @param PostRequest $request
-     * @param Post $post
-     *
-     * @return void
-     */
-    public function postUpdate(PostRequest $request, Category $category, Post $post)
-    {
-        $inputs = $request->all();
-        $newCategoryName = $inputs['newCategory_name'];
-
-        //カテゴリー
-        if ($inputs['category_id'] === "") {
-            $inputs['category_id'] = 1;
-        }
-
-        try {
-            DB::beginTransaction();
-
-            //新しいカテゴリーが入っていたら
-            if (isset($newCategoryName)) {
-                $newCategory = $category->createCategory($newCategoryName);
-                $inputs['category_id'] = $newCategory->id;
-            }
-
-            //eyeCatchImage
-            if (isset($inputs['eyeCatchImage'])) {
-                if ($post->eyeCatchImage !== 'noImage.png') {
-                    Storage::disk('public')->delete('eyeCatchImage/' . $post->eyeCatchImage);
-                }
-                $name = ImageService::upload($inputs['eyeCatchImage'],'eyeCatchImage');
-                $inputs['eyeCatchImage'] = $name;
-            }
-
-            $post->update($inputs);
-            DB::commit();
-        } catch (Exception $e) {
-            DB::rollBack();
-            return back()->with([
-                'message' => '投稿の更新に失敗しました',
-                'status' => 'alert',
-            ]);
-        }
-
-        return back()->with([
-            'message' => '投稿を更新しました',
-            'status' => 'info',
-        ]);
-    }
-
-    /**
-     * 投稿削除
-     *
-     * @param Post $post
-     *
-     * @return void
-     */
-    public function postDelete(Post $post)
-    {
-        if ($post->eyeCatchImage !== 'noImage.png') {
-            Storage::disk('public')->delete('eyeCatchImage/' . $post->eyeCatchImage);
-        }
-        $post->delete();
-        return redirect()->route('post.postList')->with([
-            'message' => '一つの投稿を削除しました。',
-            'status' => 'alert',
-        ]);
-    }
+    $onePost->delete();
+    return redirect()->route('post.postList')->with([
+      'message' => '一つの投稿を削除しました。',
+      'status' => 'alert',
+    ]);
+  }
 }

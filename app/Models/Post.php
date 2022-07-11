@@ -42,6 +42,10 @@ class Post extends Model
         return $this->parse();
     }
 
+    public function getOnePost($id){
+        return $this->where('id',$id)->first();
+    }
+
     //ページネーションと検索機能付きの投稿データ取得
     public function getPaginateSearchPosts($keyword)
     {
