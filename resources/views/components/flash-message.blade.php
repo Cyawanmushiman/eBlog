@@ -1,7 +1,7 @@
 @props(['status' => 'info'])
 
 @php
-    if(session('status') === 'info'){
+    if(session('status') === 'info' || !session('status')){
         $textColor = 'textGreen';
     }
     if(session('status') === 'alert'){
