@@ -1,5 +1,6 @@
 <?php
-//dev
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Mail\ContactForm;
@@ -44,6 +45,9 @@ class ContactController extends Controller
     //送信ボタン連打攻撃対策
     $request->session()->regenerateToken();
 
-    return redirect()->route('post.postList')->with('message','お問い合わせを送信しました');
+    return redirect()->route('post.postList')->with([
+        'message' => 'お問い合わせを送信しました',
+        'status' => 'info',
+    ]);
   }
 }

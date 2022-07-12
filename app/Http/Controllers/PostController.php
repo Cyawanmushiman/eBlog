@@ -106,6 +106,11 @@ class PostController extends Controller
   public function postShow(int $postId)
   {
     $onePost = $this->post->getOnePost($postId);
+    // $onePost = null;
+    if (!$onePost) {
+      return redirect()->route('post.postList');
+    }
+
     return view('post.postShow', [
       'post' => $onePost,
       'relatedPosts' => $onePost->getRelatedPosts($postId, $onePost->category_id, 2),
